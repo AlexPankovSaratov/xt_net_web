@@ -10,6 +10,9 @@ namespace MyTask
     {
         static void Main(string[] args)
         {
+            /*
+                // Task 0
+
             int N = 9;
             Console.WriteLine(Task_0_1_Sequence(N));
             if (Task_0_2_Simple(N))
@@ -24,6 +27,17 @@ namespace MyTask
             Task_0_4_Array();
 
             Console.ReadKey();
+            
+
+                //Task 1
+
+            Task_1_1_RECTANGLE();
+            Task_1_2_TRIANGLE();
+            Task_1_3_ANOTHER_TRIANGLE();
+            Task_1_4_X_MAS_TREE();
+            */
+
+
         }
 
         public static int[] ArraySorting(int[] arr)
@@ -41,6 +55,67 @@ namespace MyTask
                     }
             }
             return arr;
+        }
+        static int[][] ToothedArraySorting(int[][] MainArray)
+        //Сортировка зубчатаого массива
+        {
+            int AllCount = 0;
+            for (int i = 0; i < MainArray.Length; i++)
+            {
+                AllCount = AllCount + MainArray[i].Length;
+            }
+            int[] AllValueArray = new int[AllCount];
+            int size = 0;
+            for (int i = 0; i < MainArray.Length; i++)
+            {
+                MainArray[i].CopyTo(AllValueArray, size);
+                size = size + MainArray[i].Length;
+            }
+            AllValueArray = ArraySorting(AllValueArray);
+            int numberValue = 0;
+            for (int i = 0; i < MainArray.Length; i++)
+            {
+                for (int i2 = 0; i2 < MainArray[i].Length; i2++)
+                {
+                    MainArray[i][i2] = AllValueArray[numberValue];
+                    numberValue = numberValue + 1;
+                }
+            }
+            return MainArray;
+        }
+        static void Create_ChristmasTree(int CountStrings, int LeftMargin)
+        {
+            int count_stars = 1;
+            do
+            {
+                for (int i = 0; i < CountStrings - 1 + LeftMargin; i++) Console.Write(" ");
+                for (int i = 0; i < count_stars; i++) Console.Write("*");
+                if (CountStrings > 0) Console.WriteLine("");
+                count_stars += 2;
+                CountStrings--;
+            } while (CountStrings > 0);
+        }
+
+        /// <summary>
+        /// Создание положительного числа больше 0
+        /// </summary>
+        /// <returns></returns>
+        static int Create_positive_Int(string Message)
+        {
+            int N = 0;
+            do
+            {
+                try
+                {
+                    Console.Write(Message);
+                    N = Convert.ToInt32(Console.ReadLine());
+                    if (N < 1) Console.WriteLine("Число должно быть больше нуля");
+                }
+                catch (FormatException)
+                {
+                }
+            } while (N < 1);
+            return N;
         }
 
         static String Task_0_1_Sequence(int N)
@@ -125,32 +200,44 @@ namespace MyTask
                 }
             }
         }
-        static int[][] ToothedArraySorting(int [][] MainArray)
-            //Сортировка зубчатаого массива
+        /// <summary>
+        /// Вычисляет площадь прямоугольника по введённым пользователем данным
+        /// </summary>
+        static void Task_1_1_RECTANGLE()
         {
-            int AllCount = 0;
-            for(int i = 0; i < MainArray.Length; i++)
+            int rectangle_width = Create_positive_Int("Введите ширину прямоугольника: ");
+            int rectangle_long = Create_positive_Int("Введите длинну прямоугольника: ");
+            Console.Write("Площадь прямоугольника = " + rectangle_width * rectangle_long);
+            Console.ReadLine();
+        }
+        static void Task_1_2_TRIANGLE()
+        {
+            int N = Create_positive_Int("Введите число строк: ");
+            string ValueString = "";
+            do
             {
-                AllCount = AllCount + MainArray[i].Length;
-            }
-            int[] AllValueArray = new int[AllCount];
-            int size = 0;
-            for (int i = 0; i < MainArray.Length; i++)
+                ValueString += "*";
+                Console.WriteLine(ValueString);
+                N--;
+            } while (N > 0);
+            Console.ReadLine();
+        }/// <summary>
+        /// Рисует ёлочку по колличеству строк, которое вводит пользователь
+        /// </summary>
+        static void Task_1_3_ANOTHER_TRIANGLE()
+        {
+            int N = Create_positive_Int("Введите число строк: ");
+            Create_ChristmasTree(N,0);
+            Console.ReadLine();
+        }
+        static void Task_1_4_X_MAS_TREE()
+        {
+            int N = Create_positive_Int("Введите число елочек: ");
+            for(int i = 1, LeftMargin = N-1; i <= N; i++, LeftMargin--)
             {
-                MainArray[i].CopyTo(AllValueArray, size);
-                size = size + MainArray[i].Length;
+                Create_ChristmasTree(i, LeftMargin);
             }
-            AllValueArray = ArraySorting(AllValueArray);
-            int numberValue = 0;
-            for (int i = 0; i < MainArray.Length; i++)
-            {
-                for (int i2 = 0; i2 < MainArray[i].Length; i2++)
-                {
-                    MainArray[i][i2] = AllValueArray[numberValue];
-                    numberValue = numberValue + 1;
-                }
-            }
-            return MainArray;
+            Console.ReadLine();
         }
     }
 }
