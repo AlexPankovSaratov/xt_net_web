@@ -35,8 +35,13 @@ namespace MyTask
             Task_1_2_TRIANGLE();
             Task_1_3_ANOTHER_TRIANGLE();
             Task_1_4_X_MAS_TREE();
+            Task_1_5_SUM_OF_NUMBERS();
+            Task_1_7_ARRAY_PROCESSING(0,10);
+            Task_1_7_ARRAY_PROCESSING(-10, 10);
+            Task_1_9_NON_NEGATIVE_SUM();
             */
 
+             Task_1_10_2D_ARRAY();
 
         }
 
@@ -118,6 +123,72 @@ namespace MyTask
             return N;
         }
 
+
+
+        static int[] CreateRandomArray(int min, int max, int countValue)
+        {
+            Random random = new Random();
+            int[] array = new int[countValue];
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = random.Next(min, max);
+            }
+            return array;
+        }
+        static int GetSumPositiveNumbers(int[] array)
+        {
+            int sum = 0;
+            foreach (var i in array)
+            {
+                if (i > 0)
+                {
+                    sum += i;
+                }
+            }
+            return sum;
+        }
+        static int SumEvenElementsInArray(int [][] array)
+        {
+            int sum = 0;
+            for(int i = 0; i < array.Length; i++)
+            {
+                for (int q = 0; q < array[i].Length; q++)
+                {
+                    if((i+q)%2 == 0)
+                    {
+                        sum += array[i][q];
+                    }
+                }
+            }
+            return sum;
+        }
+        static int [][] СreationUser2D_Array(int minValue, int maxValue)
+        {
+            int CounArray = Create_positive_Int("Введите кол-во массивов: ");
+            int[][] MainArray = new int[CounArray][];
+            Random rand = new Random();
+            for (int i = 0; i < CounArray; i++)
+            {
+                Console.Write("Введите размер массива №" + i + ": ");
+                int arraySize = Create_positive_Int("Введите размер массива №" + i + ": ");
+                MainArray[i] = new int[arraySize];
+                for (int i2 = 0; i2 < arraySize; i2++)
+                {
+                    MainArray[i][i2] = rand.Next(minValue, maxValue);
+                    Console.WriteLine(MainArray[i][i2]);
+                }
+            }
+            return MainArray;
+        }
+
+        enum TextFormat : int
+        {
+            bold,
+            italic,
+            uderline
+
+        }
+
         static String Task_0_1_Sequence(int N)
         //Рекурсивное создание последовательных чисел
         {
@@ -170,25 +241,7 @@ namespace MyTask
         static void Task_0_4_Array()
         //Создание пользователем массива с рандомными значениями и его сортировка
         {
-            Console.Write("Кол-во массивов: ");
-            int CounArray = Convert.ToInt32(Console.ReadLine());
-            if (CounArray == 0)
-            {
-                return;
-            }
-            int[][] MainArray = new int[CounArray][];
-            Random rand = new Random();
-            for (int i = 0; i < CounArray; i++)
-            {
-                Console.Write("Введите размер массива №" + i + ": ");
-                int arraySize = Convert.ToInt32(Console.ReadLine());
-                MainArray[i] = new int[arraySize];
-                for (int i2 = 0; i2 < arraySize; i2++)
-                {
-                    MainArray[i][i2] = rand.Next(1, 100);
-                    Console.WriteLine(MainArray[i][i2]);
-                }
-            }
+            int[][] MainArray = СreationUser2D_Array(0, 10);
             MainArray = ToothedArraySorting(MainArray);
 
             for (int i = 0; i < MainArray.Length; i++)
@@ -199,6 +252,7 @@ namespace MyTask
                     Console.WriteLine(MainArray[i][i2] + " ");
                 }
             }
+            Console.ReadLine();
         }
         /// <summary>
         /// Вычисляет площадь прямоугольника по введённым пользователем данным
@@ -239,5 +293,48 @@ namespace MyTask
             }
             Console.ReadLine();
         }
+        static void Task_1_5_SUM_OF_NUMBERS()
+        {
+            int sum = 0;
+            for(int i = 1; i < 1000; i++)
+            {
+                if(i%3 == 0 || i%5 == 0)
+                {
+                    sum += i;
+                }
+            }
+            Console.WriteLine("Сумма всех чисел менее 1000 кратных 3 и 5 = " + sum);
+            Console.ReadLine();
+   
+        }
+      
+        static void Task_1_7_ARRAY_PROCESSING(int min, int max)
+        {
+            int[] array = CreateRandomArray(min, max, 30);
+            ArraySorting(array);
+            foreach (var i in array)
+            {
+                Console.Write("{0} ", i);
+            }
+            Console.ReadLine();
+        }
+
+        static void Task_1_9_NON_NEGATIVE_SUM()
+        {
+            int[] array = CreateRandomArray(-20, 20, 20);
+            foreach (var i in array)
+            {
+                Console.Write("{0} ", i);
+            }
+            Console.WriteLine(Environment.NewLine +"Сумма положительных элементов = " + GetSumPositiveNumbers(array));
+            Console.ReadLine();
+        }
+        static void Task_1_10_2D_ARRAY()
+        { 
+            int sum = SumEvenElementsInArray(СreationUser2D_Array(0, 10));
+            Console.WriteLine("Сумма элементов массива, стоящих на чётных позициях = " + sum);
+            Console.ReadLine();
+        }
+
     }
 }
