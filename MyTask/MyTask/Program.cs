@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MyTask
 {
     class Program
@@ -38,10 +39,12 @@ namespace MyTask
             Task_1_5_SUM_OF_NUMBERS();
             Task_1_7_ARRAY_PROCESSING(0,10);
             Task_1_7_ARRAY_PROCESSING(-10, 10);
+            Task_1_8_NO_POSITIVE();
             Task_1_9_NON_NEGATIVE_SUM();
+            Task_1_10_2D_ARRAY();
+            Task_1_12_CHAR_DOUBLER();
             */
-
-             Task_1_10_2D_ARRAY();
+            Task_1_11_AVERAGESTRING_LENGTH();
 
         }
 
@@ -123,6 +126,23 @@ namespace MyTask
             return N;
         }
 
+        static string Create_String(string Message)
+        {
+            string str = "";
+            do
+            {
+                try
+                {
+                    Console.Write(Message);
+                    str = Console.ReadLine();
+                }
+                catch (FormatException)
+                {
+                }
+            } while (str == "");
+            return str;
+        }
+
 
 
         static int[] CreateRandomArray(int min, int max, int countValue)
@@ -147,14 +167,14 @@ namespace MyTask
             }
             return sum;
         }
-        static int SumEvenElementsInArray(int [][] array)
+        static int SumEvenElementsInArray(int[][] array)
         {
             int sum = 0;
-            for(int i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 for (int q = 0; q < array[i].Length; q++)
                 {
-                    if((i+q)%2 == 0)
+                    if ((i + q) % 2 == 0)
                     {
                         sum += array[i][q];
                     }
@@ -162,7 +182,24 @@ namespace MyTask
             }
             return sum;
         }
-        static int [][] СreationUser2D_Array(int minValue, int maxValue)
+        static int[,,] Create_3D_RandomArray(int size_1, int size_2, int size_3, int minValue, int maxValue)
+        {
+            Random random = new Random();
+            int[,,] Array = new int[size_1, size_2, size_3];
+            for (int i = 0; i < Array.GetLength(0); i++)
+            {
+                for (int j = 0; j < Array.GetLength(1); j++)
+                {
+                    for (int n = 0; n < Array.GetLength(2); n++)
+                    {
+                        Array[i, j, n] = random.Next(minValue, maxValue);
+
+                    }
+                }
+            }
+            return Array;
+        }
+        static int[][] СreationUser2D_Array(int minValue, int maxValue)
         {
             int CounArray = Create_positive_Int("Введите кол-во массивов: ");
             int[][] MainArray = new int[CounArray][];
@@ -180,13 +217,50 @@ namespace MyTask
             }
             return MainArray;
         }
+        static void Print_3D_Array(int[,,] Array)
+        {
+            for (int i = 0; i < Array.GetLength(0); i++)
+            {
+                for (int j = 0; j < Array.GetLength(1); j++)
+                {
+                    for (int n = 0; n < Array.GetLength(2); n++)
+                    {
+                        if (n != Array.GetLength(2) - 1) Console.Write("[" + i + "," + j + "," + n + "] = " + Array[i, j, n] + " ");
+                        else Console.WriteLine("[" + i + "," + j + "," + n + "] = " + Array[i, j, n] + " ");
+                    }
+                }
+            }
+        }
+        static string[] ParceStringInArrayWords(string str)
+        {
+            char[] AllChar = str.ToCharArray();
+            Stack<char> StackPunctuation = new Stack<char>();
+            Stack<string> StackString = new Stack<string>();
+            foreach (char element in AllChar)
+            {
+                if ((Char.IsNumber(element) || Char.IsSymbol(element) || Char.IsWhiteSpace(element) || Char.IsPunctuation(element)) && !StackPunctuation.Contains(element)) StackPunctuation.Push(element);
+            }
+            char[] PunctuationArray = new char[StackPunctuation.Count];
+            for (int i = 0; StackPunctuation.Count != 0; i++) PunctuationArray[i] = StackPunctuation.Pop();
+            string[] stringArray = str.Split(PunctuationArray);
 
+            foreach (string element in stringArray)
+            {
+                if (element != "") StackString.Push(element);
+            }
+            stringArray = new string[StackString.Count];
+            for (int i = 0; StackString.Count != 0; i++) stringArray[i] = StackString.Pop();
+            return stringArray;
+        }
+        [Flags]
         enum TextFormat : int
         {
-            bold,
-            italic,
-            uderline
-
+            Default = 0,
+            bold = 1,
+            italic = 2,
+            uderline = 3,
+            bold_italic = bold | italic,
+            italic_uderline = italic | uderline
         }
 
         static String Task_0_1_Sequence(int N)
@@ -276,18 +350,18 @@ namespace MyTask
             } while (N > 0);
             Console.ReadLine();
         }/// <summary>
-        /// Рисует ёлочку по колличеству строк, которое вводит пользователь
-        /// </summary>
+         /// Рисует ёлочку по колличеству строк, которое вводит пользователь
+         /// </summary>
         static void Task_1_3_ANOTHER_TRIANGLE()
         {
             int N = Create_positive_Int("Введите число строк: ");
-            Create_ChristmasTree(N,0);
+            Create_ChristmasTree(N, 0);
             Console.ReadLine();
         }
         static void Task_1_4_X_MAS_TREE()
         {
             int N = Create_positive_Int("Введите число елочек: ");
-            for(int i = 1, LeftMargin = N-1; i <= N; i++, LeftMargin--)
+            for (int i = 1, LeftMargin = N - 1; i <= N; i++, LeftMargin--)
             {
                 Create_ChristmasTree(i, LeftMargin);
             }
@@ -296,18 +370,27 @@ namespace MyTask
         static void Task_1_5_SUM_OF_NUMBERS()
         {
             int sum = 0;
-            for(int i = 1; i < 1000; i++)
+            for (int i = 1; i < 1000; i++)
             {
-                if(i%3 == 0 || i%5 == 0)
+                if (i % 3 == 0 || i % 5 == 0)
                 {
                     sum += i;
                 }
             }
             Console.WriteLine("Сумма всех чисел менее 1000 кратных 3 и 5 = " + sum);
             Console.ReadLine();
-   
+
         }
-      
+
+ 
+        static void Task_1_6_FONT_ADJUSTMENT()
+        {
+            TextFormat currentTextStyle = new TextFormat();
+            currentTextStyle ^= TextFormat.bold;
+            currentTextStyle ^= TextFormat.italic;
+            currentTextStyle ^= TextFormat.italic_uderline;
+        }
+
         static void Task_1_7_ARRAY_PROCESSING(int min, int max)
         {
             int[] array = CreateRandomArray(min, max, 30);
@@ -319,6 +402,26 @@ namespace MyTask
             Console.ReadLine();
         }
 
+
+        static void Task_1_8_NO_POSITIVE()
+        {
+            int[,,] Array = Create_3D_RandomArray(4, 4, 4, -100, 100);
+            Print_3D_Array(Array);
+            for (int i = 0; i < Array.GetLength(0); i++)
+            {
+                for (int j = 0; j < Array.GetLength(1); j++)
+                {
+                    for (int n = 0; n < Array.GetLength(2); n++)
+                    {
+                        if (Array[i, j, n] > 0) Array[i, j, n] = 0;
+                    }
+                }
+            }
+            Console.WriteLine("Все положительные числа заменяем на 0");
+            Print_3D_Array(Array);
+            Console.ReadLine();
+        }
+
         static void Task_1_9_NON_NEGATIVE_SUM()
         {
             int[] array = CreateRandomArray(-20, 20, 20);
@@ -326,15 +429,45 @@ namespace MyTask
             {
                 Console.Write("{0} ", i);
             }
-            Console.WriteLine(Environment.NewLine +"Сумма положительных элементов = " + GetSumPositiveNumbers(array));
+            Console.WriteLine(Environment.NewLine + "Сумма положительных элементов = " + GetSumPositiveNumbers(array));
             Console.ReadLine();
         }
         static void Task_1_10_2D_ARRAY()
-        { 
+        {
             int sum = SumEvenElementsInArray(СreationUser2D_Array(0, 10));
             Console.WriteLine("Сумма элементов массива, стоящих на чётных позициях = " + sum);
             Console.ReadLine();
         }
 
+        static void Task_1_11_AVERAGESTRING_LENGTH()
+        {
+            string [] strArr = ParceStringInArrayWords(Create_String("Введите строку: "));
+            string str = "";
+            foreach (string element in strArr)
+            {
+                str += element;
+            }
+            Console.WriteLine("Средний размер слова = " + (float)str.Length / (float)strArr.Count());
+            Console.ReadLine();
+
+        }
+        static void Task_1_12_CHAR_DOUBLER()
+        {
+            string FirstString = Create_String("Введите первую строку: ");
+            char[] Array = Create_String("Введите вторую строку: ").ToCharArray();
+            StringBuilder STR = new StringBuilder();
+            string test = "";
+            foreach (char element in Array)
+            {
+                if (test.Contains(new string(element, 1)) == false)
+                {
+                    test += new string(element, 1);
+                    FirstString = FirstString.Replace(new string(element, 1), new string(element, 2));
+                }
+                
+            }
+            Console.WriteLine("Результирующая строка: " + FirstString);
+            Console.ReadLine();
+        }
     }
 }
