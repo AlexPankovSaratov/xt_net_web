@@ -11,41 +11,11 @@ namespace MyTask
     {
         static void Main(string[] args)
         {
-            /*
-                // Task 0
-
-            int N = 9;
-            Console.WriteLine(Task_0_1_Sequence(N));
-            if (Task_0_2_Simple(N))
-            {
-                Console.WriteLine("Число " + N + " простое");
-            }
-            else
-            {
-                Console.WriteLine("Число " + N + " НЕ простое");
-            }
-            Task_0_3_Squere(N);
-            Task_0_4_Array();
-
-            Console.ReadKey();
-            
-
-                //Task 1
-
-            Task_1_1_RECTANGLE();
-            Task_1_2_TRIANGLE();
-            Task_1_3_ANOTHER_TRIANGLE();
-            Task_1_4_X_MAS_TREE();
-            Task_1_5_SUM_OF_NUMBERS();
-            Task_1_7_ARRAY_PROCESSING(0,10);
-            Task_1_7_ARRAY_PROCESSING(-10, 10);
-            Task_1_8_NO_POSITIVE();
-            Task_1_9_NON_NEGATIVE_SUM();
-            Task_1_10_2D_ARRAY();
-            Task_1_12_CHAR_DOUBLER();
-            */
-            Task_1_11_AVERAGESTRING_LENGTH();
-
+            Round round1 = new Round(3,5,10);
+            round1.Radius = 20;
+            Console.WriteLine("Площадь круга = " + round1.Square);
+            Console.WriteLine("Длинна окружности = " + round1.Circumference);
+            Console.ReadLine();
         }
 
         public static int[] ArraySorting(int[] arr)
@@ -468,6 +438,40 @@ namespace MyTask
             }
             Console.WriteLine("Результирующая строка: " + FirstString);
             Console.ReadLine();
+        }
+    }
+    class Round
+    {
+        public int X;
+        public int Y;
+        private int _Radius;
+        public int Radius
+        {
+            get => _Radius;
+            set
+            {
+                if (value > 0)
+                {
+                    _Radius = value;
+                    Re_Parameters();
+                }
+                else throw new ArgumentException("Радиус должен быть больше нуля");
+            }
+        }
+        public double Circumference;
+        public double Square;
+        public Round(int X_center, int Y_center, int Round_radius)
+        {
+            X = X_center;
+            Y = Y_center;
+            if (Round_radius > 0) Radius = Round_radius;
+            else throw new ArgumentException("Радиус должен быть больше нуля");
+            Re_Parameters();
+        }
+        private void Re_Parameters()
+        {
+            Circumference = 2 * Math.PI * Radius;
+            Square = Math.Pow(Radius, 2) * Math.PI;
         }
     }
 }
