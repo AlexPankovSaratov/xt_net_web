@@ -11,10 +11,32 @@ namespace MyTask
     {
         static void Main(string[] args)
         {
-            Round round1 = new Round(3,5,10);
-            round1.Radius = 20;
-            Console.WriteLine("Площадь круга = " + round1.Square);
-            Console.WriteLine("Длинна окружности = " + round1.Circumference);
+            //Round round1 = new Round(3,5,10);
+            //round1.Radius = 20;
+            //Console.WriteLine("Площадь круга = " + round1.Square);
+            //Console.WriteLine("Длинна окружности = " + round1.Circumference);
+
+            //Triangle trangle1 = new Triangle(5,4,3);
+            //Console.WriteLine("Периметр треугольника = " + trangle1.Perimeter);
+            //Console.WriteLine("Площадь треугольника = " + trangle1.Square);
+
+            //User user1 = new User("Александр", "Алексеевич", "Панков", new DateTime(1992,7,5));
+            //Console.WriteLine("Возраст пользователя: " + user1.LastName + " " + user1.MiddleName + " " + user1.FirstName + " = " + user1.Age);
+
+            //MyString Mystr = new MyString( new char[] {'A', 'B', 'C'});
+            //Console.WriteLine(Mystr.Concatenation(0,3));
+            //Console.WriteLine(Mystr.Search_Symbol('F'));
+            //char [] char1 = MyString.Conversion_In_Char_Array(Mystr);
+
+            //Employee emp1 = new Employee("A", "A", "Pankov", new DateTime(1992, 7, 5), new DateTime(2018, 7, 5));
+            //emp1.DateEndWork = new DateTime(2019, 7, 5);
+
+            //Ring ring1 = new Ring(-5,5,2,3);
+            //Console.WriteLine("Площадь кольца = " + ring1.Square);
+            //Console.WriteLine("Сумма длин окружностей = " + ring1.Circumference);
+
+
+
             Console.ReadLine();
         }
 
@@ -444,15 +466,15 @@ namespace MyTask
     {
         public int X;
         public int Y;
-        private int _Radius;
+        private int _radius;
         public int Radius
         {
-            get => _Radius;
+            get => _radius;
             set
             {
                 if (value > 0)
                 {
-                    _Radius = value;
+                    _radius = value;
                     Re_Parameters();
                 }
                 else throw new ArgumentException("Радиус должен быть больше нуля");
@@ -474,4 +496,197 @@ namespace MyTask
             Square = Math.Pow(Radius, 2) * Math.PI;
         }
     }
-}
+    class Triangle
+    {
+        private int _a;
+        private int _b;
+        private int _c;
+        public int A
+        {
+            get => _a;
+            set
+            {
+                if (value > 0) _a = value;
+                else throw new ArgumentException("Радиус должен быть больше нуля");
+            }
+        }
+        public int B
+        {
+            get => _b;
+            set
+            {
+                if (value > 0) _b = value;
+                else throw new ArgumentException("Радиус должен быть больше нуля");
+            }
+        }
+        public int C
+        {
+            get => _c;
+            set
+            {
+                if (value > 0) _c = value;
+                else throw new ArgumentException("Радиус должен быть больше нуля");
+            }
+        }
+        public int Perimeter { get { return _a + _b + _c; } }
+        public double Square
+        {
+            get
+            {
+                int per = Perimeter;
+                return Math.Sqrt(per * (per - _a) * (per - _b) * (per - _c));
+            }
+        }
+
+        public Triangle(int value_a, int value_b, int value_c)
+        {
+            _a = value_a;
+            _b = value_b;
+            _c = value_c;
+        }
+    }
+    class User
+    {
+        public string FirstName;
+        public string MiddleName;
+        public string LastName;
+        private DateTime _dateBirth;
+        public DateTime DateBirth { get { return _dateBirth; } }
+        public double Age { get
+            {
+                TimeSpan span = (DateTime.Today - _dateBirth).Duration();
+
+                return Math.Truncate(span.TotalDays / 365);
+            } 
+        }
+        public User(string First_Name, string Middle_Name, string Last_Name, DateTime Date_Birth)
+        {
+            FirstName = First_Name;
+            MiddleName = Middle_Name;
+            LastName = Last_Name;
+            _dateBirth = Date_Birth;
+        }
+    }
+    class MyString
+    {
+        private char[] _symbols;
+        private int count_elements;
+        public int Length { get { return _symbols.Length; } }
+        public MyString(char[] symbol)
+        {
+            _symbols = symbol;
+            count_elements = symbol.Length;
+        }
+        public char this[int id]
+        {
+            get { return _symbols[id]; }
+            set  { _symbols[id] = value; }
+        }
+        public bool Comparison(int First_ID, int Second_ID)
+        {
+            return _symbols[First_ID].Equals(_symbols[Second_ID]);
+        }
+        public string Concatenation(int First_ID, int Second_ID)
+        {
+            if(First_ID >= _symbols.Length || Second_ID >= _symbols.Length)
+            {
+                throw new ArgumentException("One of the ID values ​​outside the bounds of the array");
+            }
+            return _symbols[First_ID].ToString() + _symbols[Second_ID].ToString();
+        }
+        public static MyString Conversion_In_MyString(char [] Array)
+        {
+            return new MyString(Array);
+        }
+        public static char [] Conversion_In_Char_Array(MyString MyStr)
+        {
+            return MyStr._symbols;
+        }
+        public bool Search_Symbol(char symbol)
+        {
+            foreach(char element in _symbols)
+            {
+                if (element.Equals(symbol)) return true;
+            }
+            return false;
+        }
+    }
+    class Employee : User
+    {
+        private DateTime _dateStartWork;
+        public double ExperienceInYears
+        {
+            get
+            {
+                if (_dateEndWork == null)
+                {
+                    TimeSpan span = (DateTime.Today - _dateStartWork).Duration();
+
+                    return Math.Truncate(span.TotalDays / 365);
+                }
+                else
+                {
+                    TimeSpan span = (_dateEndWork - _dateStartWork).Duration();
+
+                    return Math.Truncate(span.TotalDays / 365);
+                }
+            }
+        }
+        public DateTime DateStartWork { get { return _dateStartWork; } }
+        private DateTime _dateEndWork;
+        public DateTime DateEndWork
+        {
+            get { return _dateEndWork; }
+            set
+            {
+                if (value > _dateStartWork) _dateEndWork = value;
+                else throw new ArgumentException("DateEndWork cannot be less than Date_Start_Work");
+            }
+        }
+        
+        
+        public Employee(string First_Name, string Middle_Name, string Last_Name, DateTime Date_Birth, DateTime Date_Start_Work)
+            : base (First_Name, Middle_Name, Last_Name, Date_Birth)
+        {
+            if(Date_Start_Work < Date_Birth) throw new ArgumentException("Date_Start_Work cannot be less than Date_Birth");
+            _dateStartWork = Date_Start_Work;
+        }
+    }
+    class Ring : Round
+    {
+        private int _outerRadius;
+        public new double Circumference
+        {
+            get
+            {
+                return base.Circumference + (2 * Math.PI * _outerRadius);
+            }
+        }
+        public new double Square
+        {
+            get
+            {
+                return Math.PI * (Math.Pow(_outerRadius,2) - Math.Pow(base.Radius, 2));
+            }
+        }
+
+        public int OuterRadius
+        {
+            get => _outerRadius;
+            set
+            {
+                if (value > base.Radius)
+                {
+                    _outerRadius = value;
+                }
+                else throw new ArgumentException("The outer radius should be greater than the inner");
+            }
+        }
+        public Ring(int X_center, int Y_center, int inner_radius, int outer_raius)
+            : base (X_center, Y_center, inner_radius)
+        {
+            if (outer_raius > inner_radius) _outerRadius = outer_raius;
+            else throw new ArgumentException("The outer radius should be greater than the inner");
+        }
+    }
+}   
