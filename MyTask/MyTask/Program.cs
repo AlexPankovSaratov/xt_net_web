@@ -11,29 +11,29 @@ namespace MyTask
     {
         static void Main(string[] args)
         {
-            //Round round1 = new Round(3,5,10);
-            //round1.Radius = 20;
-            //Console.WriteLine("Площадь круга = " + round1.Square);
-            //Console.WriteLine("Длинна окружности = " + round1.Circumference);
+            Round round1 = new Round(3, 5, 10);
+            round1.Radius = 20;
+            Console.WriteLine("Площадь круга = " + round1.Square);
+            Console.WriteLine("Длинна окружности = " + round1.Circumference);
 
-            //Triangle trangle1 = new Triangle(5,4,3);
-            //Console.WriteLine("Периметр треугольника = " + trangle1.Perimeter);
-            //Console.WriteLine("Площадь треугольника = " + trangle1.Square);
+            Triangle trangle1 = new Triangle(5, 4, 3);
+            Console.WriteLine("Периметр треугольника = " + trangle1.Perimeter);
+            Console.WriteLine("Площадь треугольника = " + trangle1.Square);
 
-            //User user1 = new User("Александр", "Алексеевич", "Панков", new DateTime(1992,7,5));
-            //Console.WriteLine("Возраст пользователя: " + user1.LastName + " " + user1.MiddleName + " " + user1.FirstName + " = " + user1.Age);
+            User user1 = new User("Александр", "Алексеевич", "Панков", new DateTime(1992, 7, 5));
+            Console.WriteLine("Возраст пользователя: " + user1.LastName + " " + user1.MiddleName + " " + user1.FirstName + " = " + user1.Age);
 
-            //MyString Mystr = new MyString( new char[] {'A', 'B', 'C'});
-            //Console.WriteLine(Mystr.Concatenation(0,3));
-            //Console.WriteLine(Mystr.Search_Symbol('F'));
-            //char [] char1 = MyString.Conversion_In_Char_Array(Mystr);
+            MyString Mystr = new MyString(new char[] { 'A', 'B', 'C' });
+            Console.WriteLine(Mystr.Concatenation(1, 2));
+            Console.WriteLine(Mystr.Search_Symbol('F'));
+            char[] char1 = MyString.Conversion_In_Char_Array(Mystr);
 
-            //Employee emp1 = new Employee("A", "A", "Pankov", new DateTime(1992, 7, 5), new DateTime(2018, 7, 5));
-            //emp1.DateEndWork = new DateTime(2019, 7, 5);
+            Employee emp1 = new Employee("A", "A", "Pankov", new DateTime(1992, 7, 5), new DateTime(2018, 7, 5));
+            emp1.DateEndWork = new DateTime(2019, 7, 5);
 
-            //Ring ring1 = new Ring(-5,5,2,3);
-            //Console.WriteLine("Площадь кольца = " + ring1.Square);
-            //Console.WriteLine("Сумма длин окружностей = " + ring1.Circumference);
+            Ring ring1 = new Ring(-5, 5, 2, 3);
+            Console.WriteLine("Площадь кольца = " + ring1.Square);
+            Console.WriteLine("Сумма длин окружностей = " + ring1.Circumference);
 
 
 
@@ -374,7 +374,7 @@ namespace MyTask
 
         }
 
- 
+
         static void Task_1_6_FONT_ADJUSTMENT()
         {
             TextFormat currentTextStyle = new TextFormat();
@@ -433,7 +433,7 @@ namespace MyTask
 
         static void Task_1_11_AVERAGESTRING_LENGTH()
         {
-            string [] strArr = ParceStringInArrayWords(Create_String("Введите строку: "));
+            string[] strArr = ParceStringInArrayWords(Create_String("Введите строку: "));
             string str = "";
             foreach (string element in strArr)
             {
@@ -456,13 +456,13 @@ namespace MyTask
                     test += new string(element, 1);
                     FirstString = FirstString.Replace(new string(element, 1), new string(element, 2));
                 }
-                
+
             }
             Console.WriteLine("Результирующая строка: " + FirstString);
             Console.ReadLine();
         }
     }
-    class Round
+    class Round : Circle
     {
         public int X;
         public int Y;
@@ -495,8 +495,18 @@ namespace MyTask
             Circumference = 2 * Math.PI * Radius;
             Square = Math.Pow(Radius, 2) * Math.PI;
         }
+
+        public override void PrintFigure()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override iFigure CopyFigure(iFigure Figure_copy)
+        {
+            throw new NotImplementedException();
+        }
     }
-    class Triangle
+    class Triangle : iFigure
     {
         private int _a;
         private int _b;
@@ -544,6 +554,16 @@ namespace MyTask
             _b = value_b;
             _c = value_c;
         }
+
+        public override void PrintFigure()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override iFigure CopyFigure(iFigure Figure_copy)
+        {
+            throw new NotImplementedException();
+        }
     }
     class User
     {
@@ -557,7 +577,7 @@ namespace MyTask
                 TimeSpan span = (DateTime.Today - _dateBirth).Duration();
 
                 return Math.Truncate(span.TotalDays / 365);
-            } 
+            }
         }
         public User(string First_Name, string Middle_Name, string Last_Name, DateTime Date_Birth)
         {
@@ -580,7 +600,7 @@ namespace MyTask
         public char this[int id]
         {
             get { return _symbols[id]; }
-            set  { _symbols[id] = value; }
+            set { _symbols[id] = value; }
         }
         public bool Comparison(int First_ID, int Second_ID)
         {
@@ -588,23 +608,23 @@ namespace MyTask
         }
         public string Concatenation(int First_ID, int Second_ID)
         {
-            if(First_ID >= _symbols.Length || Second_ID >= _symbols.Length)
+            if (First_ID >= _symbols.Length || Second_ID >= _symbols.Length)
             {
                 throw new ArgumentException("One of the ID values ​​outside the bounds of the array");
             }
             return _symbols[First_ID].ToString() + _symbols[Second_ID].ToString();
         }
-        public static MyString Conversion_In_MyString(char [] Array)
+        public static MyString Conversion_In_MyString(char[] Array)
         {
             return new MyString(Array);
         }
-        public static char [] Conversion_In_Char_Array(MyString MyStr)
+        public static char[] Conversion_In_Char_Array(MyString MyStr)
         {
             return MyStr._symbols;
         }
         public bool Search_Symbol(char symbol)
         {
-            foreach(char element in _symbols)
+            foreach (char element in _symbols)
             {
                 if (element.Equals(symbol)) return true;
             }
@@ -643,12 +663,12 @@ namespace MyTask
                 else throw new ArgumentException("DateEndWork cannot be less than Date_Start_Work");
             }
         }
-        
-        
+
+
         public Employee(string First_Name, string Middle_Name, string Last_Name, DateTime Date_Birth, DateTime Date_Start_Work)
-            : base (First_Name, Middle_Name, Last_Name, Date_Birth)
+            : base(First_Name, Middle_Name, Last_Name, Date_Birth)
         {
-            if(Date_Start_Work < Date_Birth) throw new ArgumentException("Date_Start_Work cannot be less than Date_Birth");
+            if (Date_Start_Work < Date_Birth) throw new ArgumentException("Date_Start_Work cannot be less than Date_Birth");
             _dateStartWork = Date_Start_Work;
         }
     }
@@ -666,7 +686,7 @@ namespace MyTask
         {
             get
             {
-                return Math.PI * (Math.Pow(_outerRadius,2) - Math.Pow(base.Radius, 2));
+                return Math.PI * (Math.Pow(_outerRadius, 2) - Math.Pow(base.Radius, 2));
             }
         }
 
@@ -683,10 +703,299 @@ namespace MyTask
             }
         }
         public Ring(int X_center, int Y_center, int inner_radius, int outer_raius)
-            : base (X_center, Y_center, inner_radius)
+            : base(X_center, Y_center, inner_radius)
         {
             if (outer_raius > inner_radius) _outerRadius = outer_raius;
             else throw new ArgumentException("The outer radius should be greater than the inner");
+        }
+
+        public void PrintFigure()
+        {
+            throw new NotImplementedException();
+        }
+
+        public iFigure CopyFigure(iFigure Figure_copy)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public interface iGraphics_Edutor
+    {
+
+    }
+    public interface iSettings : iGraphics_Edutor
+    {
+
+    }
+    public interface iTools : iGraphics_Edutor
+    {
+
+    }
+    public  abstract class iFigure : iGraphics_Edutor
+    {
+        public abstract void PrintFigure();
+        public abstract iFigure CopyFigure(iFigure Figure_copy);
+    }
+    class Line : iFigure
+    {
+        public Line()
+        {
+        }
+
+        public override iFigure CopyFigure(iFigure Figure_copy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void PrintFigure()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    class Tectangle : iFigure
+    {
+        public Tectangle()
+        {
+        }
+
+        public override iFigure CopyFigure(iFigure Figure_copy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void PrintFigure()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    class Circle : iFigure
+    {
+        public Circle()
+        {
+        }
+        public override iFigure CopyFigure(iFigure Figure_copy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void PrintFigure()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public abstract class Player
+    {
+        public abstract void Move();
+        public abstract void Attack();
+        public abstract void Die();
+
+    }
+    public class Human : Player
+    {
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Die()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class Orc : Player
+    {
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Die()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class Elf : Player
+    {
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Die()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public interface iMonsters
+    {
+        void attack();
+        void patrol();
+        void run();
+        void die();
+    }
+    public class Wolf : iMonsters
+    {
+        public Wolf()
+        {
+
+        }
+        public void attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void die()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void patrol()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void run()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class Bear : iMonsters
+    {
+        public Bear()
+        {
+
+        }
+        public void attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void die()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void patrol()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void run()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class Tiger : iMonsters
+    {
+        public Tiger()
+        {
+
+        }
+        public void attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void die()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void patrol()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void run()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public interface iBonus
+    {
+        void appear();
+        void disappear();
+    }
+    public class Star : iBonus
+    {
+        public void appear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void disappear()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class Apple : iBonus
+    {
+        public void appear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void disappear()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class Cherry : iBonus
+    {
+        public void appear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void disappear()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public abstract class iHindrances : Map
+    {
+
+    }
+    public class Stone : iHindrances
+    {
+        public Stone()
+        {
+
+        }
+    }
+    public class Tree : iHindrances
+    {
+        public Tree()
+        {
+
+        }
+    }
+    public class Map
+    {
+        private int _width;
+        private int _height;
+        public Map()
+        {
+
+        }
+        public iMonsters AddMonsters()
+        {
+            return new Tiger();
         }
     }
 }   
