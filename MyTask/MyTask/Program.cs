@@ -998,4 +998,4 @@ namespace MyTask
             return new Tiger();
         }
     }
-}   
+}
