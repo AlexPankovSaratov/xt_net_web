@@ -43,6 +43,7 @@ namespace Task3
         {
             IList<string> ListStrUnique = new List<string> { };
             IList<string> ListStrAll = new List<string> { };
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
             foreach (string item in str.ToUpper().Split(' ', ','))
             {
                 if (!(ListStrUnique.Contains(item))) ListStrUnique.Add(item);
@@ -60,10 +61,19 @@ namespace Task3
                     {
                         if (itemAll.Equals(item)) count++;
                     }
-                    Console.WriteLine(item + " встречается " + count + " раз");
+                    dictionary.Add(item, count);
                 }  
             }
+            PrintDictionary<string, int>(dictionary);
             Console.ReadLine();
+        }
+
+        private static void PrintDictionary<T1, T2>(Dictionary<T1, T2> dictionary)
+        {
+            foreach (var item in dictionary)
+            {
+                Console.WriteLine(item);
+            }  
         }
     }
 }
