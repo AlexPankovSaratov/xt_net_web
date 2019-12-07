@@ -17,7 +17,23 @@ namespace Task3
             //Console.WriteLine("Значение оставшенося элемента: " + Array[0]);
             //Console.ReadLine();
 
-            WordFrequency("Hellow HELLOW Hellow may happy friend, may friend");
+            //WordFrequency("Hellow HELLOW Hellow may happy friend, may friend");
+
+            DynamicArray<int> DynamicArray2 = new DynamicArray<int>();
+            DynamicArray2.AddElement(0);
+            DynamicArray2.AddElement(1);
+            DynamicArray2.AddElement(2);
+            DynamicArray2.AddElement(3);
+            DynamicArray2.AddElement(4);
+            DynamicArray2.AddElement(5);
+            DynamicArray2.AddElement(6);
+            DynamicArray2.AddElement(7);
+            DynamicArray2.InitDynamicEnumer();
+            DynamicArray2.Enumirator.Index = 5;
+            DynamicArray2.Remove(4);
+            DynamicArray2.Remove(0);
+
+            Console.ReadLine();
         }
         static void Lost<T>(IList<T> Array)
         {
@@ -67,13 +83,142 @@ namespace Task3
             PrintDictionary<string, int>(dictionary);
             Console.ReadLine();
         }
-
         private static void PrintDictionary<T1, T2>(Dictionary<T1, T2> dictionary)
         {
             foreach (var item in dictionary)
             {
                 Console.WriteLine(item);
             }  
+        }
+    }
+    class DynamicArray<T> : IEnumerable<T>
+    {
+        private T[] _array;
+        private int _count;
+        public int Count { get { return _count; } }
+        private int _capacity;
+        public int Capacity { get { return _capacity; } }
+        public DynamicEnumetator Enumirator;
+        public DynamicArray()
+        {
+            _array = new T[8];
+            _capacity = 8;
+        }
+        public DynamicArray(int CountElem)
+        {
+            _array = new T[CountElem];
+            _capacity = CountElem;
+        }
+        public DynamicArray(IEnumerable <T> Enumer)
+        {
+            int countelem = Enumer.Count();
+            _array = new T[countelem];
+            _capacity = countelem;
+            _count = 0;
+            foreach (T item in Enumer)
+            {
+                AddElement(item);
+            }
+
+        }
+        public void AddElement(T element)
+        {
+            if(_capacity == _count) IncreaseCapacity(_capacity);
+            _array[_count] = element;
+            _count++;
+        }
+        public void AddRange(IEnumerable<T> Enumer){
+            if((Enumer.Count() + _count) > _capacity)
+            {
+                IncreaseCapacity(Enumer.Count());
+            }
+            foreach (T item in Enumer)
+            {
+                AddElement(item);
+            }
+        }
+        public bool Remove(T Element)
+        {
+            if (!(_array.Contains(Element))) return false;
+            bool Removed = false;
+            int IndexRemoved = 0;
+            for (int i = _count-1; i > -1 && !Removed; i--)
+            {
+                if (_array[i].Equals(Element))
+                {
+                    _array[i] = default;
+                    Removed = true;
+                    IndexRemoved = i;
+                }
+            }
+            for (int i = IndexRemoved; i < _capacity-1; i++)
+            {
+                _array[i] = _array[i + 1];
+            }
+            _array[_capacity - 1] = default;
+            _count--;
+            return true;
+        }
+        public bool Insert(int NumElement, T element)
+        {
+            if (_count + 1 < NumElement) throw new ArgumentOutOfRangeException();
+            if (NumElement == _count + 1) IncreaseCapacity(_capacity);
+            for (int i = _count; i > NumElement; i--)
+            {
+                _array[i] = _array[i-1];
+            }
+            _array[NumElement] = element;
+            _count++;
+            return true;
+        }
+        public bool IncreaseCapacity(int count)
+        {
+            if (count < 0) return false;
+            T[] TempArray = new T[_capacity + count];
+            for (int i = 0; i < _count; i++)
+            {
+                TempArray[i] = _array[i];
+            }
+            _array = TempArray;
+            _capacity += count;
+            return true;
+        }   
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+        public void InitDynamicEnumer()
+        {
+            Enumirator = new DynamicEnumetator();
+        }
+        public class DynamicEnumetator : DynamicArray<T>
+        {
+            private int _index;
+            public int Index {
+                get
+                {
+                    return _index;
+                }
+                set
+                {
+                    if (value < 0 || value > _capacity - 1) throw new ArgumentOutOfRangeException();
+                    _index = value;
+                }
+            }
+            public T GetItem()
+            {
+                return _array[_index];
+            }
+            public void GetItem(T NewItem)
+            {
+                _array[_index] = NewItem;
+            }
         }
     }
 }
