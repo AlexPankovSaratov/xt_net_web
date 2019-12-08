@@ -10,20 +10,20 @@ namespace Task_4
 {
     class Program
     {
+        public static event Action OnSort = delegate { Console.WriteLine("Sorting is finished"); };
         static void Main(string[] args)
         {
             //CustomSort
+            string[] Array = new string[] { "Привет как твои дела?", "Как дела?", "АБ Как дела?", "АА Как дела?", "Дела?" };
+            CustomSort(Array, moreA);
 
-            //string [] Array = new string[] { "Привет как твои дела?", "Как дела?", "АБ Как дела?", "АА Как дела?", "Дела?" };
-            //CustomSort(Array, moreA);
-
-            //foreach (var item in Array)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var item in Array)
+            {
+                Console.WriteLine(item);
+            }
 
             // NumberArraySum
-            //int[] intArr = new int[] { 1, 2, 3,-5 };
+            //int[] intArr = new int[] { 1, 2, 3, -5 };
             //Console.WriteLine("sum = " + intArr.NumberArraySum());
 
             // TO INT OR NOT TO INT
@@ -31,38 +31,39 @@ namespace Task_4
 
             //I SEEK YOU (Ищу все положительные элементы в массиве)
 
-            TimePrint();
+
+            Console.ReadLine();
         }
-        static int []GetRandomArr(int count = 10000, int minValue = -100, int maxValue = 100)
+        public static int []GetRandomArr(int count = 10000, int minValue = -100, int maxValue = 100)
         {
             int[] Arr = new int[count];
             Random rand = new Random();
             for (int i = 0; i < count; i++) Arr[i] = rand.Next(minValue,maxValue);
             return Arr;
         }
-        static long TimeMEtod()
+        public static void TimePrint()
         {
-            int[] ArrInt = GetRandomArr().ToArray();
-            Stopwatch time = new Stopwatch();
-            time.Start();
-            ArrInt = AllPositiveElements(ArrInt, ElementPositive);
-            time.Stop();
-            return time.ElapsedMilliseconds;
-        }
-        static void TimePrint()
-        {
-            long resulttime = 0;
-            long time = 0;
-            for (int k = 0; k < 10; k++)
+            Func<int, bool> Anon = delegate (int A)
             {
-                time = TimeMEtod();
-                Console.WriteLine("Время вызова: " + time);
-                resulttime += time;
-            }
-            Console.WriteLine("время работы AllPositiveElements: " + resulttime + " мс");
-            Console.ReadLine();
+                return A > 0;
+            };
+            Func<int, bool> Lambda;
+            Lambda = I => I > 0;
+
+            int[] ArrInt = GetRandomArr().ToArray();
+            ArrInt = AllPositiveElements(ArrInt);
+
+            ArrInt = GetRandomArr().ToArray();
+            ArrInt = AllPositiveElements(ArrInt, ElementPositive);
+
+            ArrInt = GetRandomArr().ToArray();
+            ArrInt = AllPositiveElements(ArrInt, Anon);
+
+            ArrInt = GetRandomArr().ToArray();
+            ArrInt = AllPositiveElements(ArrInt, Lambda);
+
         }
-        static void CustomSort<T>(T[] Array, Func<T, T, bool> ElementComparison)
+        public static void CustomSort<T>(T[] Array, Func<T, T, bool> ElementComparison)
         {
             if (ElementComparison == null) return;
             T tempValue;
@@ -76,8 +77,9 @@ namespace Task_4
                         Array[j] = tempValue;
                     }
             }
+            OnSort?.Invoke();
         }
-        static bool moreA(string A, string B)
+        public static bool moreA(string A, string B)
         {
             if(A.Length == B.Length)
             {
@@ -95,7 +97,7 @@ namespace Task_4
             if (A.Length < B.Length) return true;
             return false;
         }
-        static void CustomSortInAnotherThread<T>(T [] Array, Func<T, T, bool> ElementComparison)
+        public void CustomSortInAnotherThread<T>(T [] Array, Func<T, T, bool> ElementComparison)
         {
             //Thread myThread = new Thread();
         }
@@ -118,7 +120,8 @@ namespace Task_4
             }
             return ValidList.ToArray();
         }
-        static bool ElementPositive(int item) => item >= 0;
+        public static bool ElementPositive(int item) => item >= 0;
+        //static bool ElementPositiveLINQ(int item)
     }
     public static class Extension
     {
