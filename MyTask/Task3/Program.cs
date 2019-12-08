@@ -186,12 +186,12 @@ namespace Task3
 
         public IEnumerator<T> GetEnumerator()
         {
-            return this.GetEnumerator();
+            return new DynamicArrEnumirator<T>(_array);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return new DynamicArrEnumirator<T>(_array);
         }
         public void InitDynamicEnumer()
         {
@@ -219,6 +219,34 @@ namespace Task3
             {
                 _array[_index] = NewItem;
             }
+        }
+    }
+    class DynamicArrEnumirator<T> : IEnumerator<T>
+    {
+        private T[] _array;
+        private int _index = 0;
+        public T Current { get { return _array[_index]; } }
+
+        object IEnumerator.Current => Current;
+        public DynamicArrEnumirator(T[] array)
+        {
+            _array = array;
+        }
+        public void Dispose()
+        {
+            
+        }
+
+        public bool MoveNext()
+        {
+            if (_index + 1 > _array.Length-1) return false;
+            _index++;
+            return true;
+        }
+
+        public void Reset()
+        {
+            _index = 0;
         }
     }
 }
