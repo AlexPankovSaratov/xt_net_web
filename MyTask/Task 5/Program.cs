@@ -127,7 +127,7 @@ namespace Task_5
         }
         public static void GoToSelectLog()
         {
-            if (!LogsFolder.Exists)
+            if (!LogsFolder.Exists || LogsFolder.GetDirectories().Length == 0)
             {
                 Console.WriteLine("Logs do not exist");
                 return;
