@@ -10,51 +10,75 @@ namespace Task_5
     class MyGit
     { 
         private static string _mode;
+        private static bool _needLoging; 
+        public static DirectoryInfo MainFolder = new DirectoryInfo(@"E:\MainFolder");
+        private static Logs MyLogs = new Logs(MainFolder);
+        static void Main(string[] args)
+        {
+            SetMode();
+            if (_mode == "1")
+            {
+                if(MyLogs.WriteLogs()) Console.WriteLine("File Logging Completed!");
+                Console.ReadLine();
+            }
+            else if(_mode == "2") // observation mode
+            {
+                using (FileSystemWatcher FileSW = new FileSystemWatcher())
+                {
+                    FileSW.Path = @"E:\MainFolder";
+                    FileSW.Filter = "*.txt";
+                    FileSW.Changed += Edited_Files;
+                    FileSW.Created += Edited_Files;
+                    FileSW.Deleted += Edited_Files;
+                    FileSW.Renamed += Edited_Files;
+                    FileSW.EnableRaisingEvents = true;
+                    Console.WriteLine("File logging has begun. After closing the program, if the files have been changed, a log will be recorded");
+                    Console.WriteLine("Press 'q' to stop file tracking.");
+                    while (Console.Read() != 'q') ;
+                }
+                if (_needLoging) MyLogs.WriteLogs();
+            }
+            else if(_mode == "3") // change rollback mode
+            {
+                Logs.GoToSelectLog();
+                Console.ReadLine();
+            }    
+        }
+        private static void Edited_Files(object sender, FileSystemEventArgs e)
+        {
+            _needLoging = true;
+        }
         private static void SetMode()
         {
             Console.WriteLine("Please select a mode");
             {
                 do
                 {
-                    Console.WriteLine("1 - observation mode. 2 - change rollback mode");
+                    Console.WriteLine("1 - Logging all current files. 2 - observation mode. 3 - change rollback mode");
                     _mode = Console.ReadLine();
-                    if (_mode != "1" && _mode != "2") Console.WriteLine("The input is incorrect");
-                } while (_mode != "1" && _mode != "2");
+                    if (_mode != "1" && _mode != "2" && _mode != "3") Console.WriteLine("The input is incorrect");
+                } while (_mode != "1" && _mode != "2" && _mode != "3");
             }
         }
-        public static DirectoryInfo MainFolder = new DirectoryInfo(@"E:\MainFolder");
-        
-        static void Main(string[] args)
-        {
-            Logs MyLogs = new Logs(MainFolder);
-            SetMode();
-            if(_mode == "1") // observation mode
-            {
-                if (MyLogs.WriteLogs(MainFolder)) Console.WriteLine("New log entry added");
-            }
-            else // change rollback mode
-            {
-                Logs.GoToSelectLog();
-            }
-            Console.ReadLine();
-        }  
     }
     class Logs
     {
         private static DirectoryInfo LogsFolder = new DirectoryInfo(@"E:\Logs");
         private Dictionary<string, string> _logFiles; //Key - File path, Value - File value
+        private DirectoryInfo _loggedFolder;
         public Logs(DirectoryInfo MainDirectory)
         {
             _logFiles = new Dictionary<string, string>();
+            _loggedFolder = MainDirectory;
         }
-        public bool WriteLogs(DirectoryInfo MainDirectory)
+        public bool WriteLogs()
         {
-            var AllFiles = MainDirectory.GetFiles();
+            var AllFiles = _loggedFolder.GetFiles();
             foreach (var File in AllFiles)
             {
                 _logFiles.Add(File.FullName, File.OpenText().ReadToEnd());
             }
-            foreach (var Dir in MainDirectory.GetDirectories())
+            foreach (var Dir in _loggedFolder.GetDirectories())
             {
                 WriteLogs(Dir);
             }
@@ -62,8 +86,35 @@ namespace Task_5
             int i = 0;
             foreach (var element in _logFiles)
             {
-                
-                string FileName = NewLogs.FullName + @"\" + element.Key.Replace(":","#;#").Replace(@"\","#slash#");
+
+                string FileName = NewLogs.FullName + @"\" + element.Key.Replace(":", "#;#").Replace(@"\", "#slash#");
+                using (FileStream fstream = new FileStream(FileName, FileMode.OpenOrCreate))
+                {
+                    var writer = new StreamWriter(fstream);
+                    writer.Write(element.Value);
+                    writer.Close();
+                }
+                i++;
+            }
+            return true;
+        }
+        public bool WriteLogs(DirectoryInfo LoggetFolder)
+        {
+            var AllFiles = LoggetFolder.GetFiles();
+            foreach (var File in AllFiles)
+            {
+                _logFiles.Add(File.FullName, File.OpenText().ReadToEnd());
+            }
+            foreach (var Dir in LoggetFolder.GetDirectories())
+            {
+                WriteLogs(Dir);
+            }
+            var NewLogs = LogsFolder.CreateSubdirectory(DateTime.Now.ToString().Replace(':', '-'));
+            int i = 0;
+            foreach (var element in _logFiles)
+            {
+
+                string FileName = NewLogs.FullName + @"\" + element.Key.Replace(":", "#;#").Replace(@"\", "#slash#");
                 using (FileStream fstream = new FileStream(FileName, FileMode.OpenOrCreate))
                 {
                     var writer = new StreamWriter(fstream);
