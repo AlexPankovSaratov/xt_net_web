@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epam.Task_6.ConsoleUI
+namespace Epam.ListUsers.ConsoleUI
 {
     class Program
     {
