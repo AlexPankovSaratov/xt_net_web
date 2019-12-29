@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2F595E5C-96B0-4650-8603-04910111FBA1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Epam.ListUsers.Logic</RootNamespace>
+    <AssemblyName>Epam.ListUsers.Logic</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DaoProviser.cs" />
+    <Compile Include="UserLogic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Epam.ListUsers.DalContracts\Epam.ListUsers.DalContracts.csproj">
+      <Project>{83CF4148-FB74-45B5-8AE1-FC99967F395F}</Project>
+      <Name>Epam.ListUsers.DalContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.ListUsers.Entities\Epam.ListUsers.Entities.csproj">
+      <Project>{24b01a75-56cf-47ef-b3bf-8e222da4736a}</Project>
+      <Name>Epam.ListUsers.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.ListUsers.HddDal\Epam.ListUsers.HddDal.csproj">
+      <Project>{560BBFBB-83C7-44EC-AC6B-5C0073208F77}</Project>
+      <Name>Epam.ListUsers.HddDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.ListUsers.LogicContracts\Epam.ListUsers.LogicContracts.csproj">
+      <Project>{6689491b-a03d-413d-8ceb-002ef8ea6183}</Project>
+      <Name>Epam.ListUsers.LogicContracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
