@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{19C8D29F-8349-4418-AE7A-FBFA813D5B60}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Epam.Task_6.ConsoleUI</RootNamespace>
-    <AssemblyName>Epam.Task_6.ConsoleUI</AssemblyName>
+    <ProjectGuid>{77B651B0-889A-4D0B-8091-07A8C56DC13D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Epam.ListUsers.DependencyResolver</RootNamespace>
+    <AssemblyName>Epam.ListUsers.DependencyResolver</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,23 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="DependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Epam.ListUsers.DependencyResolver\Epam.ListUsers.Ioc.csproj">
-      <Project>{77B651B0-889A-4D0B-8091-07A8C56DC13D}</Project>
-      <Name>Epam.ListUsers.Ioc</Name>
+    <ProjectReference Include="..\Epam.ListUsers.DalContracts\Epam.ListUsers.DalContracts.csproj">
+      <Project>{83CF4148-FB74-45B5-8AE1-FC99967F395F}</Project>
+      <Name>Epam.ListUsers.DalContracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.Entities\Epam.ListUsers.Entities.csproj">
-      <Project>{24b01a75-56cf-47ef-b3bf-8e222da4736a}</Project>
-      <Name>Epam.ListUsers.Entities</Name>
+    <ProjectReference Include="..\Epam.ListUsers.HddDal\Epam.ListUsers.HddDal.csproj">
+      <Project>{560BBFBB-83C7-44EC-AC6B-5C0073208F77}</Project>
+      <Name>Epam.ListUsers.HddDal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.ListUsers.LogicContracts\Epam.ListUsers.LogicContracts.csproj">
-      <Project>{6689491b-a03d-413d-8ceb-002ef8ea6183}</Project>
+      <Project>{6689491B-A03D-413D-8CEB-002EF8EA6183}</Project>
       <Name>Epam.ListUsers.LogicContracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.ListUsers.Logic\Epam.ListUsers.Logic.csproj">

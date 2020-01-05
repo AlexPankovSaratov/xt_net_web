@@ -10,7 +10,7 @@ namespace Epam.ListUsers.LogicContracts
     public interface IUserLogic
     {
         User[] GetAll();
-        User AddUser(int ID, string Name, DateTime DateOfBirth, int Age);
+        User AddUser(string Name, DateTime DateOfBirth);
         void RemovedUser(int ID);
     }
 }

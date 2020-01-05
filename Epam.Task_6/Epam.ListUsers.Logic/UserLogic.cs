@@ -2,34 +2,30 @@
 using Epam.ListUsers.Entities;
 using Epam.ListUsers.LogicContracts;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.ListUsers.Logic
 {
     public class UserLogic : IUserLogic
     {
-        private IUserDao _userDao;
-
-        public UserLogic()
+        private readonly IUserDao _userDao;
+        public UserLogic(IUserDao userDao)
         {
-            _userDao = DaoProviser.UserDao;
+            _userDao = userDao;
         }
 
         public User[] GetAll()
-        {
+        { 
             return _userDao.GetAll().ToArray();
-        }
-         
+        }      
         public void RemovedUser(int ID)
         {
-            throw new NotImplementedException();
+            _userDao.Remove(ID);
         }
-        public User AddUser(int ID, string Name, DateTime DateOfBirth, int Age)
+        public User AddUser(string Name, DateTime DateOfBirth)
         {
-            User user = new User { Id = ID, Name = Name, DateOfBirth = DateOfBirth, Age = Age };
+            double AgeInDays = (DateTime.Now.Date - DateOfBirth.Date).Days / 365;
+            User user = new User { Id = _userDao.GetAll().Count() + 1, Name = Name, DateOfBirth = DateOfBirth, Age = (int)Math.Truncate(AgeInDays) };
             if (_userDao.Add(user))
             {
                 return user;

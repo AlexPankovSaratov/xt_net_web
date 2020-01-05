@@ -1,5 +1,5 @@
 ﻿using Epam.ListUsers.Entities;
-using Epam.ListUsers.Logic;
+using Epam.ListUsers.Ioc;
 using Epam.ListUsers.LogicContracts;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Epam.ListUsers.ConsoleUI
         private static IUserLogic UserLogic;
         static Program()
         {
-            UserLogic = new UserLogic();
+            UserLogic = DependencyResolver.UserLogic;
         }
         static void Main(string[] args)
         {
@@ -48,23 +48,33 @@ namespace Epam.ListUsers.ConsoleUI
         private static void ViewListUsers()
         {
             User[] users = UserLogic.GetAll();
+            if(users.Count() > 0) Console.WriteLine("All Users:");
             foreach (User item in users)
             {
-                //Console.WriteLine("ID - " + item.Id + " Name - " + item.Name + " DateOfBirth - " + item.DateOfBirth + " Age - " + item.Age);
                 Console.WriteLine($"{item.Id}. {item.Name}. {item.DateOfBirth}. {item.Age}");
             }
+            Console.ReadKey();
         }
 
         private static void RemoveUser()
         {
-            UserLogic.RemovedUser(5);
-            Console.WriteLine("User Removed");
+            Console.WriteLine("Enter the id of the user to be deleted");
+            int Id = Convert.ToInt32(Console.ReadLine());
+            UserLogic.RemovedUser(Id);
         }
 
         private static void AddUser()
         {
-            UserLogic.AddUser(1, "qwe", DateTime.Now, 12);
-            Console.WriteLine("User Added");
+            Console.WriteLine("Enter username");
+            string Name = Console.ReadLine();
+            Console.WriteLine("Enter year of birth");
+            int Year = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter month  of birth");
+            int Month = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter day of birth");
+            int Day = Convert.ToInt32(Console.ReadLine());
+            DateTime Birth = new DateTime(Year, Month, Day);
+            UserLogic.AddUser(Name, Birth);
         }
     }
 }

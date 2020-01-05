@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.HddDal", "Ep
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{8CF6023C-D5D5-499D-95D1-694189D999FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.Ioc", "Epam.ListUsers.DependencyResolver\Epam.ListUsers.Ioc.csproj", "{77B651B0-889A-4D0B-8091-07A8C56DC13D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{560BBFBB-83C7-44EC-AC6B-5C0073208F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{560BBFBB-83C7-44EC-AC6B-5C0073208F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{560BBFBB-83C7-44EC-AC6B-5C0073208F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

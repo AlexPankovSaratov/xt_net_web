@@ -1,30 +1,47 @@
 ﻿using Epam.ListUsers.DalContracts;
 using Epam.ListUsers.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Epam.ListUsers.HddDal
 {
-    public class HddUserDao : IUserDao
+    public class HDDUserDao : IUserDao
     {
-        private readonly Dictionary<int,User> users = new Dictionary<int, User>();
-        private int maxID;
-        public void MemoryUserDao()
+        private static DirectoryInfo AllUsersFolder = new DirectoryInfo(@"E:\AllUsers");
+        private static string FileName = AllUsersFolder.FullName + @"\" + "JSonAllUsers.txt";
+        private static Dictionary<int,User> _users;
+        public HDDUserDao()
         {
-            maxID = 0;
+            if (AllUsersFolder.Exists)
+            {
+                using (FileStream fstream = new FileStream(FileName, FileMode.OpenOrCreate))
+                {
+                    var reader = new StreamReader(fstream);
+                    string value = reader.ReadToEnd();
+                    if (value == "")
+                    {
+                        _users = new Dictionary<int, User>();
+                    }
+                    else _users = JsonConvert.DeserializeObject<Dictionary<int, User>>(value);
+                    reader.Close();
+                }
+            }
         }
         public bool Add(User user)
         {
-            users.Add(++maxID, user);
+            _users.Add(_users.Keys.Count + 1, user);
+            Save();
             return true;
         }
 
         public IEnumerable<User> GetAll()
         {
-            foreach (var item in users.Values)
+            foreach (var item in _users.Values)
             {
                 yield return item;
             }
@@ -32,7 +49,20 @@ namespace Epam.ListUsers.HddDal
 
         public bool Remove(int ID)
         {
-            return users.Remove(ID);
+            bool result = _users.Remove(ID);
+            if(result) Save();
+            return result;
         }
+        private void Save()
+        {
+            string StrJson = JsonConvert.SerializeObject(_users);
+            if(!AllUsersFolder.Exists) AllUsersFolder.Create();
+            using (FileStream fstream = new FileStream(FileName, FileMode.Create))
+            {
+                var writer = new StreamWriter(fstream);
+                writer.Write(StrJson);
+                writer.Close();
+            }
+        }  
     }
 }
