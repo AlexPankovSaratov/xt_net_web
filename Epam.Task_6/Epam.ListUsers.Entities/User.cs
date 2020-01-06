@@ -12,5 +12,6 @@ namespace Epam.ListUsers.Entities
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
+        public HashSet<int> AdwardsID { get; set; } = new HashSet<int>();
     }
 }

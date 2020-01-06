@@ -17,24 +17,30 @@ namespace Epam.ListUsers.HddDal
         private static Dictionary<int,User> _users;
         public HDDUserDao()
         {
-            if (AllUsersFolder.Exists)
+            if (!AllUsersFolder.Exists) AllUsersFolder.Create();
+            using (FileStream fstream = new FileStream(FileName, FileMode.OpenOrCreate))
             {
-                using (FileStream fstream = new FileStream(FileName, FileMode.OpenOrCreate))
+                var reader = new StreamReader(fstream);
+                string value = reader.ReadToEnd();
+                if (value == "")
                 {
-                    var reader = new StreamReader(fstream);
-                    string value = reader.ReadToEnd();
-                    if (value == "")
-                    {
-                        _users = new Dictionary<int, User>();
-                    }
-                    else _users = JsonConvert.DeserializeObject<Dictionary<int, User>>(value);
-                    reader.Close();
+                    _users = new Dictionary<int, User>();
                 }
+                else _users = JsonConvert.DeserializeObject<Dictionary<int, User>>(value);
+                reader.Close();
             }
         }
         public bool Add(User user)
         {
             _users.Add(_users.Keys.Count + 1, user);
+            Save();
+            return true;
+        }
+
+        public bool AddUserAdward(int iDUser, int iDAsward)
+        {
+            _users.TryGetValue(iDUser, out User user);
+            user.AdwardsID.Add(iDAsward);
             Save();
             return true;
         }
@@ -56,7 +62,6 @@ namespace Epam.ListUsers.HddDal
         private void Save()
         {
             string StrJson = JsonConvert.SerializeObject(_users);
-            if(!AllUsersFolder.Exists) AllUsersFolder.Create();
             using (FileStream fstream = new FileStream(FileName, FileMode.Create))
             {
                 var writer = new StreamWriter(fstream);

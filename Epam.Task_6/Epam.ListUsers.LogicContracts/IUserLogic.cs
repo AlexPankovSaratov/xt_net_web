@@ -12,5 +12,6 @@ namespace Epam.ListUsers.LogicContracts
         User[] GetAll();
         User AddUser(string Name, DateTime DateOfBirth);
         void RemovedUser(int ID);
+        bool AddUserAdward(int  IDUser, int  IDAsward);
     }
 }

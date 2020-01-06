@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Epam.ListUsers.DalContracts
 {
-    public interface IUserDao
+    public interface IAdwardDao
     {
-        bool Add(User user);
-        bool Remove(int ID);
-        IEnumerable<User> GetAll();
-        bool AddUserAdward(int iDUser, int iDAsward);
+        bool AddAdward(Adward adward);
+        IEnumerable<Adward> GetAll();
+        string GetTitleAdward(int ID);
     }
 }

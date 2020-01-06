@@ -32,5 +32,10 @@ namespace Epam.ListUsers.Logic
             }
             throw new ArgumentException("Error on user added");
         }
+
+        public bool AddUserAdward(int IDUser, int IDAsward)
+        {
+            return _userDao.AddUserAdward(IDUser, IDAsward);
+        }
     }
 }
