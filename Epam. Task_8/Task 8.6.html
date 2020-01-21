@@ -10,6 +10,10 @@
 			* {
 				box-sizing: border-box;
 			}
+			.Equalizer {
+				position: fixed;
+				bottom: 0;
+			}
 			.block {
 				bottom: 40px;
 				width: 150px;
@@ -17,11 +21,11 @@
 				margin-right: 10px;
 				border-radius: 5px 5px 0 0;
 				vertical-align: bottom;
-				background: repeating-linear-gradient(to bottom, transparent, 
-				transparent 70px, #333 70px, #333 78px),
+				background: repeating-linear-gradient(to bottom, 
+				transparent 0px 70px, #333 70px 78px),
 				linear-gradient(to bottom, #59ecff, #1100ff);
 			}
-			.block:nth-child(1){height: calc(78*5px);}
+			.block:nth-child(1){height: calc(78*4px);}
 			.block:nth-child(2){height: calc(78*2px);}
 			.block:nth-child(3){height: calc(78*8px);}
 			.block:nth-child(4){height: calc(78*10px);}
@@ -31,17 +35,19 @@
 		</style>
 	</head>
 	<body class="body">
-		<div class="block">
-		</div>
-		<div class="block">
-		</div>
-		<div class="block">
-		</div>
-		<div class="block">
-		</div>
-		<div class="block">
-		</div>
-		<div class="block">
+		<div class="Equalizer">
+			<div class="block">
+			</div>
+			<div class="block">
+			</div>
+			<div class="block">
+			</div>
+			<div class="block">
+			</div>
+			<div class="block">
+			</div>
+			<div class="block">
+			</div>
 		</div>
 	</body>
 </html>
