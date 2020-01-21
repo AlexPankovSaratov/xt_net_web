@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title> Task 8.5 </title>
+		<style>
+			.body {
+				background-color: #4e6379;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			.menu {
+				font-size: 0;
+				height: 240px;
+				width: 1000px;
+				border-radius: 10px;
+				background-color: #fff;
+				margin: auto;
+				margin-top: 20px;
+				box-shadow: 0 30px 50px rgb(46, 46, 46);
+			}
+			.blocks {
+				vertical-align: top;
+				display: inline-block;
+				text-align: center;
+				margin-top: 20px;
+				height: 200px;
+				width: calc(100% / 3);
+				background-color: #fff;
+				border-right: 1px solid rgb(194, 193, 193);
+				font-size: 18px;
+			}
+			.blocks a{
+				background-color: #fa644d;
+				color: #fff;
+				text-decoration: none;
+				padding: 3px 7px;
+				display: inline-block;
+				border-radius: 3px;
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			.blocks:last-child {
+				border: 0px;
+			}
+			.Name {
+				color: #fa644d;
+				font-size: 25px;
+				font-family: sans-serif;
+				font-weight: 700;
+			}
+			.blocks .img{
+				background-image: url(img8_5.jpg);
+				background-repeat: no-repeat;
+				margin: auto;
+				width: 50px;
+				height: 40px;
+			}
+			.blocks:nth-child(2) .img{
+				background-position-y: -46px;
+				width: 60px;
+			}
+			.blocks:nth-child(3) .img{
+				background-position-y: -86px;
+				width: 60px;
+			}
+		</style>
+	</head>
+	<body class="body">
+		<div class="menu">
+			<div class="blocks">
+				<div class="img"></div>
+				<p class="Name">Виртуальный хостинг</p>
+				<p>3.65$ в месяц</p>
+				<p><a href="#">Подробнее</a></p>
+			</div>
+			<div class="blocks">
+				<div class="img"></div>
+				<p class="Name">Облачный хостинг</p>
+				<p>68.95$ в месяц</p>
+				<p><a href="#">Подробнее</a></p>
+			</div>
+			<div class="blocks">
+				<div class="img"></div>
+				<p class="Name">Выделенный сервер</p>
+				<p>217.95$ в месяц</p>
+				<p><a href="#">Подробнее</a></p>
+			</div>
+		</div>
+	</body>
+</html>

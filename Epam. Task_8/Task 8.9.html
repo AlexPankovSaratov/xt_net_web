@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title> Task 8.9 </title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			.step {
+				width: 180px;
+				height: 50px;
+				background: linear-gradient(rgb(230, 230, 230),#949494,rgb(230, 229, 229));
+				position: relative;
+				text-align: center;
+				font-size: 25px;
+				font-weight: 550;
+				padding-top: 5px;
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+				display: inline-block;
+			}
+			.step:hover {
+				background: linear-gradient(#cdf8af,#57a320,#cdf8af);
+			}
+			.step:before {
+			content: '';
+			position: absolute;
+			top: 23px;
+			right: -5px;
+			width: 10px;
+			height: 40px;
+			background-color: #fff;
+			transform: rotate(15deg);
+			z-index: 4;
+			}
+			.step:after {
+			content: '';
+			position: absolute;
+			top: -13px;
+			right: -5px;
+			width: 10px;
+			height: 40px;
+			background-color: #fff;
+			transform: rotate(165deg);
+			z-index: 4;
+			}
+			.step:last-child:after{
+				display: none;
+			}
+			.step:last-child:before{
+				display: none;
+			}
+		</style>
+	</head>
+	<body class="body">
+		<div class="step">
+			Шаг 1
+		</div>
+		<div class="step">
+			Шаг 2
+		</div>
+		<div class="step">
+			Шаг 3
+		</div>
+		<div class="step">
+			Шаг 4
+		</div>
+	</body>
+</html>

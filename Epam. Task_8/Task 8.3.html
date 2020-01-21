@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title> Task 8.3 </title>
+		<style>
+			.body{
+				font-size: 20px;
+			}
+			ul {
+				list-style: none;
+				padding: 0px;
+			}
+			.lvl-1 {
+				display: inline-block;
+				vertical-align: top;
+				position: relative;
+			}
+			.lvl-1 a{
+				padding: 5px 10px 20px;
+				display: inline-block;
+				z-index: 5;
+				position: relative;
+				color: mediumblue;
+			}
+			.lvl-1:hover >a{
+				background-color: #fff;
+				/*box-shadow: -5px -3px 15px black;*/
+				border-radius: 10px 10px 0px 0px;
+			}
+			.lvl-1:hover .dropdown {
+				display: block;
+				position: absolute;
+				top: 100%;
+			}
+			.lvl-2{
+				z-index: 3;
+				padding: 5px 10px;
+			}
+			.lvl-2 a {
+				text-decoration: none;
+				color: mediumblue;
+			}
+			.lvl-2:hover {
+				background-color: deepskyblue;
+			}
+			.lvl-2:hover a {
+				color: ghostwhite;
+			}
+			.dropdown {
+				background-color: #fff;
+				margin-top: -5px;
+				box-shadow: 0 0 10px black;
+				padding: 5px;
+				position: relative;
+				display: none;
+			}
+		</style>
+	</head>
+	<body class="body">
+		<div class="navigation">
+			<ul>
+				<li class="lvl-1"><a href="#">Фаил</a>
+					<ul class="dropdown">
+						<li class="lvl-2"><a href="#">Вырезать</a></liclass="lvl-1">
+						<li class="lvl-2"><a href="#">Копировать</a></li>
+						<li class="lvl-2"><a href="#">Вставить</a></li>
+						<li class="lvl-2"><a href="#">Удалить</a></li>
+					</ul>
+				<li class="lvl-1"><a href="#">Правка</a>
+					<ul class="dropdown">
+						<li class="lvl-2"><a href="#">Вырезать</a></li>
+						<li class="lvl-2"><a href="#">Копировать</a></li>
+						<li class="lvl-2"><a href="#">Вставить</a></li>
+						<li class="lvl-2"><a href="#">Удалить</a></li>
+					</ul>
+			</ul>
+		</div>
+	</body>
+</html>
