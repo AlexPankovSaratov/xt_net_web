@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Epam.Task_10.ASP", "Epam.Task_10.ASP\Epam.Task_10.ASP.vbproj", "{801663E6-1475-46E0-B20A-AAACDC159ACB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.DalContracts", "..\Epam.Task_6\Epam.ListUsers.DalContracts\Epam.ListUsers.DalContracts.csproj", "{83CF4148-FB74-45B5-8AE1-FC99967F395F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.Ioc", "..\Epam.Task_6\Epam.ListUsers.DependencyResolver\Epam.ListUsers.Ioc.csproj", "{77B651B0-889A-4D0B-8091-07A8C56DC13D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.Entities", "..\Epam.Task_6\Epam.ListUsers.Entities\Epam.ListUsers.Entities.csproj", "{24B01A75-56CF-47EF-B3BF-8E222DA4736A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.HddDal", "..\Epam.Task_6\Epam.ListUsers.HddDal\Epam.ListUsers.HddDal.csproj", "{560BBFBB-83C7-44EC-AC6B-5C0073208F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.IAdwardLogicContracts", "..\Epam.Task_6\Epam.ListUsers.IAdwardLogic\Epam.ListUsers.IAdwardLogicContracts.csproj", "{A312723B-2ED0-4AA2-A459-00394714C3B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.Logic", "..\Epam.Task_6\Epam.ListUsers.Logic\Epam.ListUsers.Logic.csproj", "{2F595E5C-96B0-4650-8603-04910111FBA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.LogicContracts", "..\Epam.Task_6\Epam.ListUsers.LogicContracts\Epam.ListUsers.LogicContracts.csproj", "{6689491B-A03D-413D-8CEB-002EF8EA6183}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.ConsoleUI", "..\Epam.Task_6\Epam.Task_6.ConsoleUI\Epam.ListUsers.ConsoleUI.csproj", "{19C8D29F-8349-4418-AE7A-FBFA813D5B60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.ListUsers.WebUI", "Epam.ListUsers.WebUI\Epam.ListUsers.WebUI.csproj", "{D1FEC1AE-E20A-42EE-A027-C74B4B9C8572}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{801663E6-1475-46E0-B20A-AAACDC159ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801663E6-1475-46E0-B20A-AAACDC159ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801663E6-1475-46E0-B20A-AAACDC159ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801663E6-1475-46E0-B20A-AAACDC159ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83CF4148-FB74-45B5-8AE1-FC99967F395F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83CF4148-FB74-45B5-8AE1-FC99967F395F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83CF4148-FB74-45B5-8AE1-FC99967F395F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83CF4148-FB74-45B5-8AE1-FC99967F395F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B651B0-889A-4D0B-8091-07A8C56DC13D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B01A75-56CF-47EF-B3BF-8E222DA4736A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B01A75-56CF-47EF-B3BF-8E222DA4736A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B01A75-56CF-47EF-B3BF-8E222DA4736A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B01A75-56CF-47EF-B3BF-8E222DA4736A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{560BBFBB-83C7-44EC-AC6B-5C0073208F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{560BBFBB-83C7-44EC-AC6B-5C0073208F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{560BBFBB-83C7-44EC-AC6B-5C0073208F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{560BBFBB-83C7-44EC-AC6B-5C0073208F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A312723B-2ED0-4AA2-A459-00394714C3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A312723B-2ED0-4AA2-A459-00394714C3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A312723B-2ED0-4AA2-A459-00394714C3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A312723B-2ED0-4AA2-A459-00394714C3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F595E5C-96B0-4650-8603-04910111FBA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F595E5C-96B0-4650-8603-04910111FBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F595E5C-96B0-4650-8603-04910111FBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F595E5C-96B0-4650-8603-04910111FBA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6689491B-A03D-413D-8CEB-002EF8EA6183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6689491B-A03D-413D-8CEB-002EF8EA6183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6689491B-A03D-413D-8CEB-002EF8EA6183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6689491B-A03D-413D-8CEB-002EF8EA6183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C8D29F-8349-4418-AE7A-FBFA813D5B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C8D29F-8349-4418-AE7A-FBFA813D5B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C8D29F-8349-4418-AE7A-FBFA813D5B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C8D29F-8349-4418-AE7A-FBFA813D5B60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1FEC1AE-E20A-42EE-A027-C74B4B9C8572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1FEC1AE-E20A-42EE-A027-C74B4B9C8572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1FEC1AE-E20A-42EE-A027-C74B4B9C8572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1FEC1AE-E20A-42EE-A027-C74B4B9C8572}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F87A5E41-4CAB-4F24-9ADD-B5825AE0664E}
+	EndGlobalSection
+EndGlobal

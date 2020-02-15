@@ -1,0 +1,12 @@
+﻿@using Epam.ListUsers.WebUI;
+@using Epam.ListUsers.Entities;
+@{
+    var WebUI = new WebUI();
+    Adward[] AllAdwards = WebUI.GetListAdwards();
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    PageData["Title"] = "Все награды";
+}
+@foreach (Adward item in AllAdwards)
+{
+    <a class="dropdown-item" href="#">@item.Title (id: @item.Id)</a>
+}

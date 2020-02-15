@@ -1,0 +1,74 @@
+﻿@using Epam.ListUsers.WebUI;
+@using Epam.ListUsers.Entities;
+@{
+    Layout = null;
+    var WebUI = new WebUI();
+    Adward[] AllAdwards = WebUI.GetListAdwards();
+    User[] AllUsers = WebUI.GetListUsers();
+    if (IsPost)
+    {
+        var Name = Request["Name"];
+        var BirthDay = Request["BirthDay"];
+        WebUI.AddUser(Name, BirthDay);
+        var RemoveID = Request["RemoveID"];
+        WebUI.RemoveUser(RemoveID);
+        var NameNewAdward = Request["NameNewAdward"];
+        WebUI.AddAdward(NameNewAdward);
+        var IdUser = Request["IdUser"];
+        var IdAdward = Request["IdAdward"];
+        WebUI.AddUserAdward(IdAdward, IdUser);
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device=width" />
+    <title>@PageData["Title"]</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="Header">
+        <a class="navbar-brand">Welcome!</a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="~/index.cshtml">
+                <img src="https://vcsgo.ru/img/icons/counter_strike_global_offensive_58.png" width="50" height="50" alt="">
+            </a>
+        </nav>
+        <a class="navbar-brand" href="~/index.cshtml">Menu:</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Pages/AddUser.cshtml">Add user <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Pages/RemoveUser.cshtml">Remove user <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Pages/AllUsers.cshtml">All Users<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Pages/AddAdward.cshtml">Add adward <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Pages/AddAdwardUser.cshtml">Add reward to user <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Pages/AllAdwards.cshtml">All Adwards<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="monitor">
+        @RenderBody()
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/JavaScript.js"></script>
+</body>
+</html>

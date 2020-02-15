@@ -1,0 +1,12 @@
+﻿@using Epam.ListUsers.WebUI;
+@using Epam.ListUsers.Entities;
+@{
+    var WebUI = new WebUI();
+    User[] AllUsers = WebUI.GetListUsers();
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    PageData["Title"] = "Все пользователи";
+}
+@foreach (User item in AllUsers)
+{
+    <a class="dropdown-item" href="#">@item.Name (Возраст: @item.Age / Дата рождения: @item.DateOfBirth.Day.@item.DateOfBirth.Month.@item.DateOfBirth.Year / Id: @item.Id)</a>
+}

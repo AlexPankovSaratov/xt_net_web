@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    PageData["Title"] = "Добавление награды";
+}
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline" method="post" action="~/index.cshtml">
+        <label class="margin" for="inputDate">Добавить награду: </label>
+        <input class="form-control mr-sm-2" type="text" placeholder="Наименование награды" aria-label="Search" name="NameNewAdward">
+        <button class="btn btn-primary margin">Добавить</button>
+    </form>
+</nav>

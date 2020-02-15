@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{19C8D29F-8349-4418-AE7A-FBFA813D5B60}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Epam.Task_6.ConsoleUI</RootNamespace>
-    <AssemblyName>Epam.Task_6.ConsoleUI</AssemblyName>
+    <ProjectGuid>{D1FEC1AE-E20A-42EE-A027-C74B4B9C8572}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Epam.ListUsers.WebUI</RootNamespace>
+    <AssemblyName>Epam.ListUsers.WebUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,29 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="WebUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Epam.ListUsers.DependencyResolver\Epam.ListUsers.Ioc.csproj">
-      <Project>{77B651B0-889A-4D0B-8091-07A8C56DC13D}</Project>
+    <ProjectReference Include="..\..\Epam.Task_6\Epam.ListUsers.DependencyResolver\Epam.ListUsers.Ioc.csproj">
+      <Project>{77b651b0-889a-4d0b-8091-07a8c56dc13d}</Project>
       <Name>Epam.ListUsers.Ioc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.Entities\Epam.ListUsers.Entities.csproj">
+    <ProjectReference Include="..\..\Epam.Task_6\Epam.ListUsers.Entities\Epam.ListUsers.Entities.csproj">
       <Project>{24b01a75-56cf-47ef-b3bf-8e222da4736a}</Project>
       <Name>Epam.ListUsers.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.LogicContracts\Epam.ListUsers.LogicContracts.csproj">
+    <ProjectReference Include="..\..\Epam.Task_6\Epam.ListUsers.LogicContracts\Epam.ListUsers.LogicContracts.csproj">
       <Project>{6689491b-a03d-413d-8ceb-002ef8ea6183}</Project>
       <Name>Epam.ListUsers.LogicContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.Logic\Epam.ListUsers.Logic.csproj">
-      <Project>{2F595E5C-96B0-4650-8603-04910111FBA1}</Project>
-      <Name>Epam.ListUsers.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

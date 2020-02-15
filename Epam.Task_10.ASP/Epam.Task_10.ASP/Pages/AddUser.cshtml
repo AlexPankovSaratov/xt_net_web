@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    PageData["Title"] = "Добавление пользователя";
+}
+<div>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" method="post" action="~/index.cshtml">
+            <label class="margin" for="inputDate">Добавить пользователя: </label>
+            <input class="form-control mr-sm-2" type="text" placeholder="Имя" aria-label="Search" name="Name">
+            <div class="form-group">
+                <label class="margin" for="inputDate">Дата рождения:</label>
+                <input type="date" class="form-control" name="BirthDay">
+            </div>
+            <button class="btn btn-primary margin">Добавить</button>
+        </form>
+    </nav>
+</div>
