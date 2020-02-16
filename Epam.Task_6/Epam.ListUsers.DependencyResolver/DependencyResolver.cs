@@ -21,5 +21,10 @@ namespace Epam.ListUsers.Ioc
         public static IAdwardDao AdwardDao => _adwardDao ?? (_adwardDao = new HDDAdwardDao());
         private static IAdwardLogic _adwarLogic;
         public static IAdwardLogic AdwardLogic => _adwarLogic ?? (_adwarLogic = new AdwardLogic(AdwardDao));
+
+        private static IUserAttachmentDao _userAttachmentDao;
+        public static IUserAttachmentDao UserAttachmentDao => _userAttachmentDao ?? (_userAttachmentDao = new HDDUserAttachmentDao());
+        private static IUserAttachmentLogic _userAttachmentLogic;
+        public static IUserAttachmentLogic UserAttachmentLogic => _userAttachmentLogic ?? (_userAttachmentLogic = new UserAttachmentLogic(UserAttachmentDao));
     }
 }

@@ -152,6 +152,9 @@
     <Content Include="Pages\AddAdwardUser.cshtml" />
     <Content Include="Pages\AllUsers.cshtml" />
     <Content Include="Pages\AllAdwards.cshtml" />
+    <Content Include="Pages\login.cshtml" />
+    <Content Include="Pages\SignOut.cshtml" />
+    <Content Include="Pages\AddUserRole.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -303,7 +306,9 @@
       <Name>Epam.ListUsers.WebUI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

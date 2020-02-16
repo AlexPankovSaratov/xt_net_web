@@ -8,5 +8,7 @@
 }
 @foreach (Adward item in AllAdwards)
 {
-    <a class="dropdown-item" href="#">@item.Title (id: @item.Id)</a>
+    <div id="my-alert" class="alert alert-light alert-dismissible fade show" role="alert">
+        @item.Title (id: @item.Id)
+    </div>
 }

@@ -6,9 +6,119 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace Epam.ListUsers.WebUI
 {
+    public class MyRoleProvider : RoleProvider
+    {
+        private static IUserAttachmentLogic UserAttachmentLogic;
+        static MyRoleProvider()
+        {
+            UserAttachmentLogic = DependencyResolver.UserAttachmentLogic;
+        }
+        public static bool VerifUser(string Login, string Password)
+        {
+            if (UserAttachmentLogic.GetAll().Length == 0 && Login == "" && Password == "")
+            {
+                //Создаём гостевую учётку
+                UserAttachmentLogic.AddUser("", "");
+            }
+            //if (Login == "" && Password != "") return false;
+            foreach (UserAttachment item in UserAttachmentLogic.GetAll())
+            {
+                if (item.Login == Login)
+                {
+                    return item.Password == Password;
+                }
+            }
+            UserAttachmentLogic.AddUser(Login, Password);
+            if (UserAttachmentLogic.GetAll().Length == 2 && Login != "" && Password != "")
+            {
+                //Первый зарегистрированный пользователь становится админом
+                UserAttachmentLogic.AddUserRole(Login, "Admin");
+            }
+            return true;
+        }
+        public static bool AddUserRole(string Login, string RoleName)
+        {
+            if (Login == "" && RoleName != "") return false;
+            if (UserAttachmentLogic.GetAll().Length < 1)
+            {
+                AddUserRole(Login, "Admin");
+            }
+            foreach (UserAttachment item in UserAttachmentLogic.GetAll())
+            {
+                if (item.Login == Login)
+                {
+                    return UserAttachmentLogic.AddUserRole(Login, RoleName);
+                }
+            }
+            return false;
+        }
+        public override bool IsUserInRole(string Login, string roleName)
+        {
+            if (Login == "Alex" && roleName == "Admin") return true;
+            return false;
+        }
+
+        public override string[] GetRolesForUser(string Login)
+        {
+            string [] Roles = new string[] { };
+            foreach (UserAttachment item in UserAttachmentLogic.GetAll())
+            {
+                if(item.Login == Login)
+                {
+                    Roles = item.Roles.ToArray(); ;
+                }
+            }
+            return Roles;
+        }
+        #region NOT_IMPLEMENTED
+        public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public override void AddUsersToRoles(string[] usernames, string[] roleNames)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void CreateRole(string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string[] FindUsersInRole(string roleName, string usernameToMatch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string[] GetAllRoles()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string[] GetUsersInRole(string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool RoleExists(string roleName)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
     public class WebUI
     {
         private static IUserLogic UserLogic;

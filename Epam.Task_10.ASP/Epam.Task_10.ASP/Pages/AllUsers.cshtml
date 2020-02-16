@@ -8,5 +8,19 @@
 }
 @foreach (User item in AllUsers)
 {
-    <a class="dropdown-item" href="#">@item.Name (Возраст: @item.Age / Дата рождения: @item.DateOfBirth.Day.@item.DateOfBirth.Month.@item.DateOfBirth.Year / Id: @item.Id)</a>
+    <div id="my-alert" class="alert alert-light alert-dismissible fade show" role="alert">
+        @item.Name (Возраст: @item.Age / Дата рождения: @item.DateOfBirth.Day.@item.DateOfBirth.Month.@item.DateOfBirth.Year / Id: @item.Id)
+        @if (@User.Identity.Name != "")
+        {
+            if (item.AdwardsID.Count > 0)
+            {
+                @: Список наград:
+            }
+            foreach (int IdAdward in item.AdwardsID)
+            {
+                var Adward = WebUI.GetTitleAdward(IdAdward);
+                @: @Adward;
+            }
+        }
+    </div>
 }

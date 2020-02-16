@@ -1,0 +1,44 @@
+﻿@using Epam.ListUsers.WebUI;
+@{
+    string Log = null, Pass = null;
+    Log = Request["Log"];
+    Pass = Request["Pass"];
+    bool VerifResult = false;
+    if(IsPost)
+    {
+        VerifResult = MyRoleProvider.VerifUser(Log, Pass);
+        if (VerifResult)
+        {
+            FormsAuthentication.SetAuthCookie(Log, createPersistentCookie: true);
+            Response.Redirect("~");
+        }  
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head> 
+    <meta charset="utf-8" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Логин</title>
+</head>
+<body>
+    @if (IsPost && !VerifResult)
+    {
+        <div id="my-alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+            Данный пользователь уже существует. Введённый пароль не верен! Либо данные не введены.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div style="width:25%; margin: 40px" class="alert alert-success" role="alert">
+        Что бы войти как гость, оставьте поля пустыми
+    </div>
+    <form method="post" action="~/Pages/login" class="form-inline" style="margin-left: 40px;">
+        <input class="form-control mr-sm-2" type="text" placeholder="Логин" name="Log" value=@Log />
+        <input class="form-control mr-sm-2" type="password" placeholder="Пароль" aria-label="Search" name="Pass" value=@Pass />
+        <button class="btn btn-primary margin">Войти</button>
+    </form>
+</body>
+</html>

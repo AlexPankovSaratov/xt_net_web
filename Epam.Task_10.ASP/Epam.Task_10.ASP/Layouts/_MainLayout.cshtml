@@ -28,8 +28,22 @@
     <link href="~/Styles.css" rel="stylesheet" />
 </head>
 <body>
+    @if (User.IsInRole("Admin"))
+    {
+        <div id="my-alert" class="alert alert-dark alert-dismissible fade show" role="alert">
+            Hellow Admin!
+        </div>
+    }
     <div class="Header">
-        <a class="navbar-brand">Welcome!</a>
+        @if (@User.Identity.Name == "")
+        {
+            <a class="navbar-brand">User: Гость</a>
+        }
+        else
+        {
+            <a class="navbar-brand">User: @User.Identity.Name</a>
+        }
+        <button id="btn_signout" class="btn btn-light" style="margin-bottom: 5px; padding: 2px 10px" type="submit">Выйти</button>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <nav class="navbar navbar-light bg-light">
@@ -44,23 +58,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="~/Pages/AddUser.cshtml">Add user <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="~/Pages/RemoveUser.cshtml">Remove user <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
                     <a class="nav-link" href="~/Pages/AllUsers.cshtml">All Users<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="~/Pages/AddAdward.cshtml">Add adward <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="~/Pages/AddAdwardUser.cshtml">Add reward to user <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="~/Pages/AllAdwards.cshtml">All Adwards<span class="sr-only">(current)</span></a>
-                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Pages/AllAdwards.cshtml">All Adwards<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Pages/AddUser.cshtml">Add user <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Pages/RemoveUser.cshtml">Remove user <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Pages/AddAdward.cshtml">Add adward <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Pages/AddAdwardUser.cshtml">Add reward to user <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Pages/AddUserRole.cshtml">Add User Role<span class="sr-only">(current)</span></a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>

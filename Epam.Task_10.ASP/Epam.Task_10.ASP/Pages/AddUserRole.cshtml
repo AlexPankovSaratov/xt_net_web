@@ -1,0 +1,25 @@
+﻿@using Epam.ListUsers.WebUI;
+@using Epam.ListUsers.Entities;
+@{
+    var WebUI = new WebUI();
+    User[] AllUsers = WebUI.GetListUsers();
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    PageData["Title"] = "Добавление роли пользователю";
+    string Login = null, RoleName = null;
+    Login = Request["Login"];
+    RoleName = Request["RoleName"];
+    if (IsPost)
+    {
+        MyRoleProvider.AddUserRole(Login, RoleName);
+    }
+}
+    <div>
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline" method="post" action="~/Pages/AddUserRole.cshtml">
+                <label class="margin" for="inputDate">Добавить пользователю роль: </label>
+                <input class="form-control mr-sm-2" type="text" placeholder="Login пользователя" aria-label="Search" name="Login">
+                <input class="form-control mr-sm-2" type="text" placeholder="Имя роли" aria-label="Search" name="RoleName">
+                <button class="btn btn-primary margin">Добавить</button>
+            </form>
+        </nav>
+    </div>
