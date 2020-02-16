@@ -12,5 +12,6 @@ namespace Epam.ListUsers.LogicContracts
         Adward[] GetAll();
         Adward AddAdward(string Title);
         string GetTitleAdward(int ID);
+        bool RemoveAdward(int ID);
     }
 }

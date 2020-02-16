@@ -1,5 +1,6 @@
 ﻿using Epam.ListUsers.DalContracts;
 using Epam.ListUsers.Entities;
+using Epam.ListUsers.Ioc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,13 @@ namespace Epam.ListUsers.HddDal
         public bool AddAdward(Adward adward)
         {
             _adwards.Add(_adwards.Keys.Count + 1, adward);
+            Save();
+            return true;
+        }
+        public bool RemoveAdward(int Idadward)
+        {
+            _adwards.Remove(Idadward);
+            Ioc.DependencyResolver.UserDao.RemoveAdwardAllUsers(Idadward);
             Save();
             return true;
         }

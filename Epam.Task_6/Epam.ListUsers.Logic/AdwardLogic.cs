@@ -36,5 +36,10 @@ namespace Epam.ListUsers.Logic
         {
             return _adwardDao.GetTitleAdward(ID);
         }
+
+        public bool RemoveAdward(int ID)
+        {
+            return _adwardDao.RemoveAdward(ID);
+        }
     }
 }

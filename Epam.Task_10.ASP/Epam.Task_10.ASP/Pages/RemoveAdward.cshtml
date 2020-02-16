@@ -1,0 +1,22 @@
+﻿@using Epam.ListUsers.WebUI;
+@using Epam.ListUsers.Entities;
+@{
+    var WebUI = new WebUI();
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    PageData["Title"] = "Удаление награды";
+    string IdAdward = null;
+    IdAdward = Request["IdAdward"];
+    if (IsPost)
+    {
+        WebUI.RemoveAdward(IdAdward);
+    }
+}
+<div>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" method="post" action="~/Pages/RemoveAdward.cshtml">
+            <label class="margin" for="inputDate">Удалить награду: </label>
+            <input class="form-control mr-sm-2" type="text" placeholder="Login пользователя" aria-label="Search" name="IdAdward">
+            <button class="btn btn-primary margin">Удалить</button>
+        </form>
+    </nav>
+</div>

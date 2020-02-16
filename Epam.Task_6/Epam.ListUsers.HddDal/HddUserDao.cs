@@ -36,7 +36,15 @@ namespace Epam.ListUsers.HddDal
             Save();
             return true;
         }
-
+        public bool RemoveAdwardAllUsers(int Idadward)
+        {
+            foreach (User item in Ioc.DependencyResolver.UserDao.GetAll())
+            {
+                item.AdwardsID.Remove(Idadward);
+            }
+            Save();
+            return true;
+        }
         public bool AddUserAdward(int iDUser, int iDAsward)
         {
             _users.TryGetValue(iDUser, out User user);

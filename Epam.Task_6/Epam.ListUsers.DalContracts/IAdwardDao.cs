@@ -12,5 +12,6 @@ namespace Epam.ListUsers.DalContracts
         bool AddAdward(Adward adward);
         IEnumerable<Adward> GetAll();
         string GetTitleAdward(int ID);
+        bool RemoveAdward(int Idadward);
     }
 }

@@ -178,6 +178,19 @@ namespace Epam.ListUsers.WebUI
             if (Name == null) return;
             AdwardLogic.AddAdward(Name);
         }
+        public static bool RemoveAdward(string ID)
+        {
+            if (ID == "") return false;
+            try
+            {
+                AdwardLogic.RemoveAdward(Convert.ToInt32(ID));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public static Adward[] GetListAdwards()
         {
             return AdwardLogic.GetAll();
