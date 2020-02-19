@@ -13,5 +13,8 @@ namespace Epam.ListUsers.DalContracts
         IEnumerable<Adward> GetAll();
         string GetTitleAdward(int ID);
         bool RemoveAdward(int Idadward);
+        bool AddAdwardImage(int IdAdward, byte[] ByteArrayImage);
+        bool RemoveAdwardImage(int IdAdward);
+        byte[] GetAdwardImage(int IdAdward);
     }
 }

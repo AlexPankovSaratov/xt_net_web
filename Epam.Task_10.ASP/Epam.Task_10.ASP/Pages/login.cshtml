@@ -32,9 +32,15 @@
             </button>
         </div>
     }
-    <div style="width:25%; margin: 40px" class="alert alert-success" role="alert">
-        Что бы войти как гость, оставьте поля пустыми
-    </div>
+<div style="width:25%; margin: 40px" class="alert alert-success" role="alert">
+    Добро пожаловать!
+    <br />
+    1. Что бы войти как гость, оставьте поля пустыми.
+    <br />
+    2. Для регистрации введите имя пользователя. Если такое имя уже есть, произойдёт проверка пароля и вход.
+    <br />
+    3. Первый зарегистрированный пользователь автоматически является администратором.
+</div>
     <form method="post" action="~/Pages/login" class="form-inline" style="margin-left: 40px;">
         <input class="form-control mr-sm-2" type="text" placeholder="Логин" name="Log" value=@Log />
         <input class="form-control mr-sm-2" type="password" placeholder="Пароль" aria-label="Search" name="Pass" value=@Pass />

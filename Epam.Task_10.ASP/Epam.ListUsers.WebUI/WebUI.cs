@@ -19,7 +19,7 @@ namespace Epam.ListUsers.WebUI
         }
         public static bool VerifUser(string Login, string Password)
         {
-            if (UserAttachmentLogic.GetAll().Length == 0 && Login == "" && Password == "")
+            if (UserAttachmentLogic.GetAll().Length == 0)
             {
                 //Создаём гостевую учётку
                 UserAttachmentLogic.AddUser("", "");
@@ -202,6 +202,72 @@ namespace Epam.ListUsers.WebUI
         public static User[] GetListUsers()
         {
             return UserLogic.GetAll();
+        }
+        public bool AddAdwardImage(string IdAdward, byte[] ByteArrayImage)
+        {
+            try
+            {
+                return AdwardLogic.AddAdwardImage(Convert.ToInt32(IdAdward), ByteArrayImage);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool RemoveAdwardImage(string IdAdward)
+        {
+            try
+            {
+                return AdwardLogic.RemoveAdwardImage(Convert.ToInt32(IdAdward));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public byte[] GetAdwardImage(string IdAdward)
+        {
+            try
+            {
+                return AdwardLogic.GetAdwardImage(Convert.ToInt32(IdAdward));
+            }
+            catch (Exception)
+            {
+                return new byte[] { };
+            }
+        }
+        public bool AddUserImage(string ID, byte[] ByteArrayImage)
+        {
+            try
+            {
+                return UserLogic.AddUserImage(Convert.ToInt32(ID), ByteArrayImage);
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        }
+        public bool RemoveUserImage(string ID)
+        {
+            try
+            {
+                return UserLogic.RemoveUserImage(Convert.ToInt32(ID));
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        }
+        public byte[] GetUserImage(string ID)
+        {
+            try
+            {
+                return UserLogic.GetUserImage(Convert.ToInt32(ID));
+            }
+            catch (Exception)
+            {
+                return new byte[] { };
+            }
         }
     }
 }

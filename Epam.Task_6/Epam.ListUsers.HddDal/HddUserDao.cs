@@ -76,6 +76,28 @@ namespace Epam.ListUsers.HddDal
                 writer.Write(StrJson);
                 writer.Close();
             }
-        }  
+        }
+
+        public bool AddUserImage(int IDUser, byte[] ByteArrayImage)
+        {
+            _users.TryGetValue(IDUser, out User user);
+            user.ImageUser = ByteArrayImage;
+            Save();
+            return true;
+        }
+
+        public bool RemoveUserImage(int IDUser)
+        {
+            _users.TryGetValue(IDUser, out User user);
+            user.ImageUser = new byte[] { };
+            Save();
+            return true;
+        }
+
+        public byte[] GetUserImage(int IDUser)
+        {
+            _users.TryGetValue(IDUser, out User user);
+            return user.ImageUser;
+        }
     }
 }

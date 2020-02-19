@@ -10,5 +10,6 @@ namespace Epam.ListUsers.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public byte[] ImageAdward { get; set; }
     }
 }

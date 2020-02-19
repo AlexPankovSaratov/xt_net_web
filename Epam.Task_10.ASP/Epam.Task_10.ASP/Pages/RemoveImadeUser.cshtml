@@ -1,0 +1,25 @@
+﻿@using Epam.ListUsers.WebUI;
+@using Epam.ListUsers.Entities;
+@{
+    var WebUI = new WebUI();
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    PageData["Title"] = "Удалить картинку у пользователя";
+
+    if (IsPost)
+    {
+        string IDUser = Request["IDUser"];
+        if (IDUser != "")
+        {
+            WebUI.RemoveUserImage(IDUser);
+        }
+    }
+}
+<div>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" method="post" action="~/Pages/RemoveImadeUser.cshtml">
+            <label class="margin" for="inputDate">Удалить изображение: </label>
+            <input class="form-control mr-sm-2" type="text" placeholder="ID пользователя" aria-label="Search" name="IDUser">
+            <button class="btn btn-primary margin">Удалить</button>
+        </form>
+    </nav>
+</div>

@@ -37,5 +37,20 @@ namespace Epam.ListUsers.Logic
         {
             return _userDao.AddUserAdward(IDUser, IDAsward);
         }
+
+        public bool AddUserImage(int IDUser, byte[] ByteArrayImage)
+        {
+            return _userDao.AddUserImage(IDUser, ByteArrayImage);
+        }
+
+        public byte[] GetUserImage(int IDUser)
+        {
+            return _userDao.GetUserImage(IDUser);
+        }
+
+        public bool RemoveUserImage(int IDUser)
+        {
+            return _userDao.RemoveUserImage(IDUser);
+        }
     }
 }

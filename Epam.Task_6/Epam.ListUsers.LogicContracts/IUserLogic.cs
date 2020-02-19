@@ -13,5 +13,8 @@ namespace Epam.ListUsers.LogicContracts
         User AddUser(string Name, DateTime DateOfBirth);
         void RemovedUser(int ID);
         bool AddUserAdward(int  IDUser, int  IDAsward);
+        bool AddUserImage(int IDUser, byte[] ByteArrayImage);
+        bool RemoveUserImage(int IDUser);
+        byte[] GetUserImage(int IDUser);
     }
 }

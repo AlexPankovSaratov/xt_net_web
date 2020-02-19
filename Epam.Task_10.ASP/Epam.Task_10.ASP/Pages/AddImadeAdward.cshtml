@@ -3,30 +3,30 @@
 @{
     var WebUI = new WebUI();
     Layout = "~/Layouts/_MainLayout.cshtml";
-    PageData["Title"] = "Добавить картинку у пользователя";
+    PageData["Title"] = "Добавить картинку к награде";
 
     if (IsPost)
     {
-        byte[] ByteArrayImage = new byte[] { };
+        byte[] ByteArrayImage = new byte [] { };
         WebImage photo = WebImage.GetImageFromRequest();
-        string IDUser = Request["IDUser"];
-        if (photo != null && IDUser != "")
+        string IDAdward = Request["IDAdward"];
+        if(photo != null && IDAdward != "")
         {
             while (photo.Width > 300 || photo.Height > 300)
             {
                 photo = photo.Resize(Convert.ToInt32(photo.Width / 2), Convert.ToInt32(photo.Height / 2));
             }
             ByteArrayImage = photo.GetBytes();
-            WebUI.AddUserImage(IDUser, ByteArrayImage);
+            WebUI.AddAdwardImage(IDAdward, ByteArrayImage);
         }
     }
 }
 <div>
     <nav class="navbar navbar-light bg-light">
-        <form class="form-inline" method="post" enctype="multipart/form-data" action="~/Pages/AddImadeUser.cshtml">
+        <form class="form-inline" method="post" enctype="multipart/form-data" action="~/Pages/AddImadeAdward.cshtml">
             <label class="margin" for="inputDate">Добавить изображение: </label>
             <input class="custom-file" type="file" placeholder="Добавить картинку" name="Image">
-            <input class="form-control mr-sm-2" type="text" placeholder="ID пользователя" aria-label="Search" name="IDUser">
+            <input class="form-control mr-sm-2" type="text" placeholder="ID награды" aria-label="Search" name="IDAdward">
             <button class="btn btn-primary margin">Добавить</button>
         </form>
     </nav>

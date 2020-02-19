@@ -10,5 +10,21 @@
 {
     <div id="my-alert" class="alert alert-light alert-dismissible fade show" role="alert">
         @item.Title (id: @item.Id)
+        <br />
+        @{
+            byte[] ByteImageArray = WebUI.GetAdwardImage(item.Id.ToString());
+            try
+            {
+                WebImage photo = new WebImage(ByteImageArray);
+                if (photo != null)
+                {
+                    <img class="userimage" src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.ImageAdward))">
+                }
+            }
+            catch (Exception)
+            {
+                <img src="https://i.pinimg.com/originals/59/8e/19/598e19e4777de33541f7b45867b72157.jpg" width="100" height="100" alt="">
+            }
+        }
     </div>
 }

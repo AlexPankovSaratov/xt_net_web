@@ -27,6 +27,17 @@ namespace Epam.ListUsers.Logic
             throw new ArgumentException("Error on adward added");
         }
 
+        public bool AddAdwardImage(int IdAdward, byte[] ByteArrayImage)
+        {
+            if (ByteArrayImage.Length < 1) return false;
+            return _adwardDao.AddAdwardImage(IdAdward, ByteArrayImage);
+        }
+
+        public byte[] GetAdwardImage(int IdAdward)
+        {
+            return _adwardDao.GetAdwardImage(IdAdward);
+        }
+
         public Adward[] GetAll()
         {
             return _adwardDao.GetAll().ToArray();
@@ -40,6 +51,11 @@ namespace Epam.ListUsers.Logic
         public bool RemoveAdward(int ID)
         {
             return _adwardDao.RemoveAdward(ID);
+        }
+
+        public bool RemoveAdwardImage(int IdAdward)
+        {
+            return _adwardDao.RemoveAdwardImage(IdAdward);
         }
     }
 }

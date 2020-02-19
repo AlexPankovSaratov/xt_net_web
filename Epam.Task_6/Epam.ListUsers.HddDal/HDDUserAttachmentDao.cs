@@ -52,6 +52,7 @@ namespace Epam.ListUsers.HddDal
                 yield return item;
             }
         }
+
         private void Save()
         {
             string StrJson = JsonConvert.SerializeObject(_userAttachment);

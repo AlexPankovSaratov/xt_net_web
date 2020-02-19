@@ -68,5 +68,27 @@ namespace Epam.ListUsers.HddDal
                 writer.Close();
             }
         }
+
+        public bool AddAdwardImage(int IdAdward, byte[] ByteArrayImage)
+        {
+            _adwards.TryGetValue(IdAdward, out Adward adward);
+            adward.ImageAdward = ByteArrayImage;
+            Save();
+            return true;
+        }
+
+        public bool RemoveAdwardImage(int IdAdward)
+        {
+            _adwards.TryGetValue(IdAdward, out Adward adward);
+            adward.ImageAdward = new byte[] { };
+            Save();
+            return true;
+        }
+
+        public byte[] GetAdwardImage(int IdAdward)
+        {
+            _adwards.TryGetValue(IdAdward, out Adward adward);
+            return adward.ImageAdward;
+        }
     }
 }

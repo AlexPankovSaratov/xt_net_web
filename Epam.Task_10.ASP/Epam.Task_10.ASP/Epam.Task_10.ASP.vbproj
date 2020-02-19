@@ -157,6 +157,9 @@
     <Content Include="Pages\AddUserRole.cshtml" />
     <Content Include="Pages\RemoveAdward.cshtml" />
     <Content Include="Pages\AddImadeUser.cshtml" />
+    <Content Include="Pages\AddImadeAdward.cshtml" />
+    <Content Include="Pages\RemoveImadeUser.cshtml" />
+    <Content Include="Pages\RemoveImadeAdward.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
