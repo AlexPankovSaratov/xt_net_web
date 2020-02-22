@@ -12,7 +12,7 @@ namespace Epam.ListUsers.DalContracts
         bool Add(User user);
         bool Remove(int ID);
         IEnumerable<User> GetAll();
-        bool AddUserAdward(int iDUser, int iDAsward);
+        bool AddUserAdward(int iDUser, int iDAward);
         bool RemoveAdwardAllUsers(int idadward);
         bool AddUserImage(int IDUser, byte[] ByteArrayImage);
         bool RemoveUserImage(int IDUser);

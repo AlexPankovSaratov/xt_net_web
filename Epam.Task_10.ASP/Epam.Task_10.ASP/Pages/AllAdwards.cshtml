@@ -18,7 +18,7 @@
                 WebImage photo = new WebImage(ByteImageArray);
                 if (photo != null)
                 {
-                    <img class="userimage" src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(item.ImageAdward))">
+                    <img class="userimage" src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(ByteImageArray))">
                 }
             }
             catch (Exception)

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77B651B0-889A-4D0B-8091-07A8C56DC13D}</ProjectGuid>
+    <ProjectGuid>{B9AB9B2E-DF52-435B-A89F-BBB8A9A3FD94}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Epam.ListUsers.DependencyResolver</RootNamespace>
-    <AssemblyName>Epam.ListUsers.DependencyResolver</AssemblyName>
+    <RootNamespace>Epam.ListUsers.SqlDal</RootNamespace>
+    <AssemblyName>Epam.ListUsers.SqlDal</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,7 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Epam.ListUsers.DependencyResolver">
+      <HintPath>..\Epam.Task_10.ASP\Bin\Epam.ListUsers.DependencyResolver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,29 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyResolver.cs" />
+    <Compile Include="SqlUserDao.cs" />
+    <Compile Include="SqlUserAttachmentDao.cs" />
+    <Compile Include="SqlAwardDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Epam.Task_10.ASP\Epam.ListUsers.SqlDal\Epam.ListUsers.SqlDal.csproj">
-      <Project>{B9AB9B2E-DF52-435B-A89F-BBB8A9A3FD94}</Project>
-      <Name>Epam.ListUsers.SqlDal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.DalContracts\Epam.ListUsers.DalContracts.csproj">
+    <ProjectReference Include="..\..\Epam.Task_6\Epam.ListUsers.DalContracts\Epam.ListUsers.DalContracts.csproj">
       <Project>{83CF4148-FB74-45B5-8AE1-FC99967F395F}</Project>
       <Name>Epam.ListUsers.DalContracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.HddDal\Epam.ListUsers.HddDal.csproj">
-      <Project>{560BBFBB-83C7-44EC-AC6B-5C0073208F77}</Project>
-      <Name>Epam.ListUsers.HddDal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.LogicContracts\Epam.ListUsers.LogicContracts.csproj">
-      <Project>{6689491B-A03D-413D-8CEB-002EF8EA6183}</Project>
-      <Name>Epam.ListUsers.LogicContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Epam.ListUsers.Logic\Epam.ListUsers.Logic.csproj">
-      <Project>{2F595E5C-96B0-4650-8603-04910111FBA1}</Project>
-      <Name>Epam.ListUsers.Logic</Name>
+    <ProjectReference Include="..\..\Epam.Task_6\Epam.ListUsers.Entities\Epam.ListUsers.Entities.csproj">
+      <Project>{24B01A75-56CF-47EF-B3BF-8E222DA4736A}</Project>
+      <Name>Epam.ListUsers.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

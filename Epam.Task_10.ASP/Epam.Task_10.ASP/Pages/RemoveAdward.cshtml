@@ -11,12 +11,12 @@
         WebUI.RemoveAdward(IdAdward);
     }
 }
-<div>
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline" method="post" action="~/Pages/RemoveAdward.cshtml">
-            <label class="margin" for="inputDate">Удалить награду: </label>
-            <input class="form-control mr-sm-2" type="text" placeholder="ID награды" aria-label="Search" name="IdAdward">
-            <button class="btn btn-primary margin">Удалить</button>
-        </form>
-    </nav>
-</div>
+    <div>
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline" method="post" action="~/Pages/RemoveAdward.cshtml">
+                <label class="margin" for="inputDate">Удалить награду: </label>
+                <input id="fieldRemoveId" class="form-control mr-sm-2" type="text" placeholder="ID награды" aria-label="Search" name="IdAdward">
+                <button id="removeAward" class="btn btn-primary margin">Удалить</button>
+            </form>
+        </nav>
+    </div>
